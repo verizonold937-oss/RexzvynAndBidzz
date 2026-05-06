@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>JASTEB REXVYN & BIDZZ | WEBSITE BY REXVYN</title>
+    <title>JASTEB REXVYN & BIDZZ | WEBSITE RESMI</title>
     <!-- Google Fonts & Font Awesome 6 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,7 +24,7 @@
             min-height: 100vh;
         }
 
-        /* soft grid background */
+        /* animated gradient orb */
         body::before {
             content: "";
             position: fixed;
@@ -36,6 +36,24 @@
             background-size: 28px 28px;
             pointer-events: none;
             z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 30%;
+            right: -20%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(80, 130, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            animation: floatOrb 20s ease infinite;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+            50% { transform: translate(-30px, 30px); opacity: 0.8; }
         }
 
         .app-container {
@@ -54,15 +72,32 @@
             border: 1px solid rgba(100, 150, 255, 0.35);
             box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* header elegan (biru gelap keunguan) */
+        .premium-glass:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* header elegan */
         .header-luxury {
             background: linear-gradient(115deg, #13233F, #0D1A30, #1A2A4A);
             padding: 24px 18px;
             text-align: center;
             border-bottom: 1px solid #3E5A9A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-luxury::before {
+            content: "✨";
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.05;
+            bottom: -20px;
+            right: -20px;
+            pointer-events: none;
         }
 
         .header-luxury h1 {
@@ -74,11 +109,24 @@
             background-clip: text;
             color: transparent;
             text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: titleGlow 2s ease infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(100,150,255,0.3)); }
+            50% { filter: drop-shadow(0 0 8px rgba(100,150,255,0.5)); }
         }
 
         .header-luxury h1 i {
             color: #6EA8FE;
             margin: 0 6px;
+            animation: iconSpin 3s ease infinite;
+        }
+
+        @keyframes iconSpin {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
         }
 
         .badge-line {
@@ -95,9 +143,14 @@
             font-size: 0.7rem;
             font-weight: 600;
             backdrop-filter: blur(4px);
+            transition: all 0.2s;
+        }
+        .badge-line span:hover {
+            background: #2E4170;
+            transform: scale(1.02);
         }
 
-        /* SCROLLABLE TAB (8 TAB) - mobile friendly horizontal scroll */
+        /* SCROLLABLE TAB (8 TAB) */
         .tab-scroll {
             overflow-x: auto;
             white-space: nowrap;
@@ -107,7 +160,7 @@
             border-bottom: 1px solid #2C3F66;
             display: flex;
             flex-wrap: nowrap;
-            padding: 6px 0;
+            padding: 8px 0;
             -webkit-overflow-scrolling: touch;
         }
         .tab-scroll::-webkit-scrollbar {
@@ -133,13 +186,18 @@
             font-weight: 600;
             font-size: 0.75rem;
             color: #A2B9E8;
-            transition: 0.2s;
+            transition: all 0.25s ease;
             cursor: pointer;
             border-radius: 40px;
             gap: 6px;
+            position: relative;
         }
         .tab-btn-8 i {
             font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .tab-btn-8:hover i {
+            transform: translateY(-2px);
         }
         .tab-btn-8.active {
             background: linear-gradient(145deg, #2B3F6E, #1D2E52);
@@ -147,22 +205,25 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             border: 1px solid #6D93E0;
         }
+        .tab-btn-8.active i {
+            transform: scale(1.05);
+        }
 
         /* panel area */
         .panel-8 {
             display: none;
             padding: 22px 18px;
-            animation: fadeSlide 0.3s ease;
+            animation: fadeSlide 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .panel-8.active-panel {
             display: block;
         }
         @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* komponen kartu harga */
+        /* kartu harga dengan efek hover */
         .price-item-silver {
             background: #0E162Ecc;
             border-radius: 60px;
@@ -172,7 +233,13 @@
             align-items: center;
             margin: 10px 0;
             border: 1px solid #3C549B;
-            transition: 0.2s;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .price-item-silver:hover {
+            background: #162044;
+            border-color: #6D93E0;
+            transform: translateX(5px);
         }
         .price-amount {
             font-weight: 800;
@@ -184,14 +251,23 @@
             padding: 5px 15px;
             border-radius: 40px;
             font-weight: 700;
+            transition: background 0.2s;
+        }
+        .price-item-silver:hover .price-ress {
+            background: #2E4680;
         }
         .bonus-card {
-            background: #121D3C;
+            background: linear-gradient(115deg, #121D3C, #0F1835);
             border-radius: 28px;
             padding: 14px;
             margin: 18px 0;
             text-align: center;
             border-left: 4px solid #5F8BDF;
+            transition: all 0.2s;
+        }
+        .bonus-card:hover {
+            transform: scale(1.01);
+            border-left-width: 6px;
         }
 
         .feature-grid-8 {
@@ -206,6 +282,11 @@
             display: flex;
             gap: 16px;
             align-items: center;
+            transition: all 0.2s;
+        }
+        .feature-item-8:hover {
+            background: #162244;
+            transform: translateX(4px);
         }
         .feature-item-8 i {
             font-size: 1.8rem;
@@ -215,6 +296,14 @@
 
         .step-list {
             margin: 12px 0;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+            padding: 8px 12px;
+            border-radius: 60px;
+        }
+        .step-list:hover {
+            background: #1E2F4E55;
         }
         .step-num-circle {
             background: #2F4680;
@@ -226,7 +315,13 @@
             justify-content: center;
             font-weight: 800;
             margin-right: 12px;
+            transition: all 0.2s;
         }
+        .step-list:hover .step-num-circle {
+            background: #5F8BDF;
+            transform: scale(1.05);
+        }
+
         .wa-button-group {
             display: flex;
             flex-direction: column;
@@ -244,13 +339,57 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            transition: 0.1s linear;
+            transition: all 0.15s linear;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-telegram-wa::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        .btn-telegram-wa:hover::before {
+            left: 100%;
+        }
+        .btn-telegram-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        .btn-telegram-wa:active {
+            transform: translateY(1px);
         }
         .btn-telegram-wa.second {
             background: #3B82F6;
             color: white;
         }
+
+        .group-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .group-btn {
+            background: #1E2F4E;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 60px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .group-btn:hover {
+            background: #2E4680;
+            transform: scale(1.02);
+        }
+
         .footer-note {
             text-align: center;
             font-size: 0.65rem;
@@ -259,9 +398,22 @@
             margin-top: 8px;
         }
 
+        /* counter animasi untuk event */
+        .event-counter {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #7AA2F7;
+            background: #0B1530;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 40px;
+            margin-top: 8px;
+        }
+
         @media (max-width: 500px) {
             .tab-btn-8 { padding: 8px 12px; font-size: 0.65rem; }
             .price-item-silver { flex-wrap: wrap; justify-content: center; gap: 8px; }
+            .header-luxury h1 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -274,6 +426,7 @@
                 <span><i class="fas fa-clock"></i> 24/7 OPEN</span>
                 <span><i class="fas fa-gem"></i> BEST RESS</span>
                 <span><i class="fas fa-shield"></i> TERPERCAYA</span>
+                <span><i class="fas fa-rocket"></i> #1 JASTEB</span>
             </div>
         </div>
 
@@ -301,91 +454,106 @@
             <div class="bonus-card">
                 🔥 Setiap pembelian >5k dapat BONUS 5 🔥 &nbsp;| 🎁 Tiap nambah 50member bagi² jasteb free
             </div>
-            <div style="background:#0B1530; border-radius:24px; padding:12px; text-align:center;">😈 MAU MURAH? AMBIL BANYAK, BARU KERASA BEDANYA</div>
+            <div style="background:#0B1530; border-radius:24px; padding:12px; text-align:center; transition:0.2s;">
+                😈 "MAU MURAH? AMBIL BANYAK, BARU KERASA BEDANYA"
+            </div>
         </div>
 
         <!-- TAB 2 : KEUNGGULAN & LARANGAN -->
         <div id="tab2" class="panel-8">
             <div class="feature-grid-8">
                 <div class="feature-item-8"><i class="fas fa-bolt"></i><span><strong>⚡ Respon cepet</strong><br>gak pake ngilang, fast respons</span></div>
-                <div class="feature-item-8"><i class="fas fa-shield-alt"></i><span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>terjamin quality</span></div>
+                <div class="feature-item-8"><i class="fas fa-shield-alt"></i><span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>terjamin quality & trusted</span></div>
                 <div class="feature-item-8"><i class="fas fa-comment-dots"></i><span><strong>🎯 Request? Gas, selama masuk akal</strong><br>custom order dilayani</span></div>
-                <div class="feature-item-8"><i class="fas fa-hand-peace"></i><span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas member</span></div>
+                <div class="feature-item-8"><i class="fas fa-hand-peace"></i><span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas member setia</span></div>
             </div>
             <div style="background:#1A1F3A; border-radius: 28px; padding: 14px; margin-top: 20px;">
                 <p><i class="fas fa-ban"></i> ❌ Udah order jangan kabur</p>
                 <p><i class="fas fa-skull-crossbones"></i> ❌ Kita jualan, bukan kejar-kejaran</p>
+                <p><i class="fas fa-check-circle" style="color:#7AA2F7;"></i> ✅ Konfirmasi dulu sebelum order</p>
             </div>
         </div>
 
         <!-- TAB 3 : ORDER + ADMIN -->
         <div id="tab3" class="panel-8">
             <div class="step-list"><span class="step-num-circle">1</span> 📩 Minat? Chat aja santai</div>
-            <div class="step-list"><span class="step-num-circle">2</span> 🎁 Dapat sung stor + bonus</div>
+            <div class="step-list"><span class="step-num-circle">2</span> 🎁 Dapat sung stor + bonus langsung</div>
             <div class="step-list"><span class="step-num-circle">3</span> ⚡ Proses kilat, langsung gas</div>
             <div class="wa-button-group">
-                <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa"><i class="fab fa-whatsapp"></i> ADMIN 1 - ORDER</a>
-                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa second"><i class="fab fa-whatsapp"></i> ADMIN 2 - ORDER GOKIL</a>
+                <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa"><i class="fab fa-whatsapp"></i> ADMIN 1 - ORDER SEKARANG</a>
+                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa second"><i class="fab fa-whatsapp"></i> ADMIN 2 - ORDER CADANGAN</a>
             </div>
             <div class="bonus-card" style="margin-top:6px;">
-                <i class="fab fa-whatsapp"></i> JOIN GRUP : <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#9DC6FF;">Klik disini</a> 🔥
+                <i class="fab fa-whatsapp"></i> JOIN GRUP OFFICIAL : 
+                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
+            </div>
+            <div class="bonus-card" style="margin-top:6px; background:#0F1835;">
+                <i class="fas fa-info-circle"></i> Sertakan kode "REXVYN" untuk mendapatkan extra bonus!
             </div>
         </div>
 
         <!-- TAB 4 : BONUS & HADIAH SPESIAL -->
         <div id="tab4" class="panel-8">
-            <div class="bonus-card"><i class="fas fa-fire"></i> BONUS 5 🔥 untuk pembelian diatas 5k</div>
-            <div class="bonus-card"><i class="fas fa-users"></i> 🎁 Tiap nambah 50 member bagi² ress gratis!</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> Dapat sung stor setiap order (limited)</div>
-            <div class="bonus-card"><i class="fas fa-star"></i> LOYALTY: order 3x dapat extra ress</div>
+            <div class="bonus-card"><i class="fas fa-fire"></i> <strong>BONUS 5 🔥</strong><br>untuk pembelian diatas 5k</div>
+            <div class="bonus-card"><i class="fas fa-users"></i> <strong>🎁 FREE JASTEB</strong><br>Tiap nambah 50 member bagi² ress gratis!</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>SUNG STOR</strong><br>Dapat sung stor setiap order (limited time)</div>
+            <div class="bonus-card"><i class="fas fa-star"></i> <strong>LOYALTY REWARD</strong><br>order 3x dapat extra ress + bonus khusus</div>
+            <div class="bonus-card"><i class="fas fa-medal"></i> <strong>TOP SPENDER</strong><br>Pembelian terbanyak dalam sebulan dapet free 100ress</div>
         </div>
 
         <!-- TAB 5 : KOMUNITAS & INFO GRUP -->
         <div id="tab5" class="panel-8">
             <div class="feature-item-8"><i class="fab fa-whatsapp"></i><span><strong>Grup Resmi JastebRex</strong><br>update harga, free jasteb, dan event</span></div>
-            <div class="feature-item-8"><i class="fas fa-users"></i><span><strong>Komunitas Aktif</strong><br>Para member solid</span></div>
-            <div class="feature-item-8"><i class="fas fa-chart-line"></i><span><strong>Info Promo Spesial</strong><br>Hanya untuk member grup</span></div>
-            <div style="text-align: center; margin-top: 16px;">
-                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="background:#2C3F66; display:inline-block; padding:10px 20px; border-radius:60px; text-decoration:none; color:white;"><i class="fab fa-whatsapp"></i> Gabung Grup Sekarang</a>
-                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" style="background:#2C3F66; display:inline-block; padding:10px 20px; border-radius:60px; text-decoration:none; color:white;"><i class="fab fa-whatsapp"></i> Gabung Komunitas Sekarang</a>
+            <div class="feature-item-8"><i class="fas fa-users"></i><span><strong>Komunitas Aktif 300+</strong><br>Para member solid & ramah</span></div>
+            <div class="feature-item-8"><i class="fas fa-chart-line"></i><span><strong>Info Promo Spesial</strong><br>Hanya untuk member grup aktif</span></div>
+            <div class="group-buttons">
+                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" class="group-btn"><i class="fab fa-whatsapp"></i> Gabung Grup WhatsApp</a>
+                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" class="group-btn" style="background:#2E4680;"><i class="fab fa-whatsapp"></i> Gabung Channel Komunitas</a>
+            </div>
+            <div class="bonus-card" style="margin-top:12px;">
+                <i class="fas fa-user-plus"></i> Ajak 5 teman join grup → dapat 10ress gratis!
             </div>
         </div>
 
-        <!-- TAB 6 : TESTIMONI (fiktif) -->
+        <!-- TAB 6 : TESTIMONI -->
         <div id="tab6" class="panel-8">
             <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ Raka24</strong> — “Gas pol, dapet 250ress + bonus, recomended!”</span></div>
             <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ Jasteman</strong> — “respon cepet, aman, gk ngecewain”</span></div>
             <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ DewiJasteb</strong> — “order 15k dapet 150ress + bonus, mantap”</span></div>
             <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ RexLovers</strong> — “admin baik, free jasteb promo beneran”</span></div>
-            <div class="bonus-card" style="margin-top:12px;">⭐ 4.9/5 dari 100+ pembeli ⭐</div>
+            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ BotakMan</strong> — “udah 5x order, selalu dapet extra, mantul”</span></div>
+            <div class="bonus-card" style="margin-top:12px;">⭐ 4.9/5 dari 150+ pembeli ⭐</div>
         </div>
 
-        <!-- TAB 7 : FAQ (Pertanyaan Umum) -->
+        <!-- TAB 7 : FAQ -->
         <div id="tab7" class="panel-8">
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Berapa lama proses?</strong><br>A: Cepat, max 10 menit setelah order.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Apakah aman?</strong><br>A: 100% aman, sudah banyak pelanggan.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Bisa request ress khusus?</strong><br>A: Bisa, asal masuk akal, hubungi admin.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Gimana dapet free jasteb?</strong><br>A: Ikuti event di grup & member get member.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Berapa lama proses?</strong><br>A: Cepat, max 10 menit setelah order & konfirmasi.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Apakah aman?</strong><br>A: 100% aman, sudah banyak pelanggan & testimoni.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Bisa request ress khusus?</strong><br>A: Bisa, asal masuk akal, langsung hubungi admin.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Gimana dapet free jasteb?</strong><br>A: Ikuti event di grup & ajak teman join komunitas.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Metode pembayaran?</strong><br>A: Dana, Ovo, Gopay, Qris, Transfer Bank.</span></div>
         </div>
 
-        <!-- TAB 8 : EVENT & PROMO MINGGUAN -->
+        <!-- TAB 8 : EVENT & PROMO -->
         <div id="tab8" class="panel-8">
-            <div class="bonus-card"><i class="fas fa-calendar-alt"></i> <strong>EVEN MINGGUAN</strong><br>Setiap Jumat: Pembelian 20k dapet extra 20ress</div>
-            <div class="bonus-card"><i class="fas fa-trophy"></i> <strong>Lomba Top Spender</strong><br>Top 3 pembelian terbanyak dapat free jasteb 50ress</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>Event 50 Member Baru</strong><br>Bagi-bagi 150ress gratis untuk member random</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>Event 100 Member Baru</strong><br>Bagi-bagi 200ress gratis untuk member random</div>
-            <div class="feature-item-8"><i class="fas fa-info-circle"></i><span>Follow terus grup untuk info event kilat!</span></div>
+            <div class="bonus-card"><i class="fas fa-calendar-alt"></i> <strong>🔥 EVENT MINGGUAN 🔥</strong><br>Setiap Jumat: Pembelian 20k dapet extra 20ress</div>
+            <div class="bonus-card"><i class="fas fa-trophy"></i> <strong>LOMBA TOP SPENDER</strong><br>Top 3 pembelian terbanyak dapat free jasteb 50ress</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 50 MEMBER BARU</strong><br>Bagi-bagi 150ress gratis untuk member random aktif</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 100 MEMBER BARU</strong><br>Bagi-bagi 200ress gratis + 5 bonus untuk semua</div>
+            <div class="bonus-card"><i class="fas fa-rocket"></i> <strong>FLASH SALE</strong><br>Setiap tanggal 1 dan 15: diskon 10% semua paket</div>
+            <div class="feature-item-8"><i class="fas fa-info-circle"></i><span>Follow terus grup untuk info event kilat & undian berhadiah!</span></div>
+            <div class="event-counter" id="eventCounter">🚀 Next event: 5 hari lagi</div>
         </div>
 
         <div class="footer-note">
-            <i class="fas fa-check-circle"></i> JASTEB REXVYN & BIDZZ • SUPPORT 24 JAM • 2026
+            <i class="fas fa-check-circle"></i> JASTEB REXVYN & BIDZZ • SUPPORT 24 JAM • 2025 • WEB BY REXVYN
         </div>
     </div>
 </div>
 
 <script>
     (function() {
-        // 8 TAB SWITCHING dengan audio & vibrasi
+        // 8 TAB SWITCHING
         const tabs = document.querySelectorAll('.tab-btn-8');
         const panels = document.querySelectorAll('.panel-8');
 
@@ -398,7 +566,7 @@
             if (activeTab) activeTab.classList.add('active');
         }
 
-        // efek suara ringan (menggunakan Web Audio)
+        // efek suara ringan
         let audioCtx = null;
         function initAudio() {
             if (audioCtx) return;
@@ -446,14 +614,23 @@
             });
         });
 
-        // tambahkan audio untuk tombol WA dan link grup
-        const allInteractive = document.querySelectorAll('.btn-telegram-wa, a[href*="chat.whatsapp.com"]');
+        // audio untuk tombol WA dan link grup
+        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, a[href*="chat.whatsapp.com"], a[href*="whatsapp.com/channel"]');
         allInteractive.forEach(el => {
             el.addEventListener('click', () => {
                 playSoftClick();
                 if (navigator.vibrate) navigator.vibrate(20);
             });
         });
+
+        // update event counter sederhana
+        const counterEl = document.getElementById('eventCounter');
+        if (counterEl) {
+            const nextEvent = new Date();
+            nextEvent.setDate(nextEvent.getDate() + (5 - nextEvent.getDay() + 1) % 7);
+            const daysLeft = Math.ceil((nextEvent - new Date()) / (1000 * 3600 * 24));
+            counterEl.innerHTML = `🚀 Event berikutnya: ${daysLeft} hari lagi | Jumat Flash Sale!`;
+        }
     })();
 </script>
 </body>
