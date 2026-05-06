@@ -2,281 +2,241 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>JASTEB REXVYN & BIDZZ | OPEN ORDER 🔥</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <!-- Google Fonts & Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: radial-gradient(circle at 10% 20%, #0b0d17, #03050b);
+            background: #0a0c16;
             font-family: 'Inter', sans-serif;
-            color: #f0f3ff;
-            line-height: 1.5;
-            padding: 2rem 1rem;
+            color: #edf2ff;
+            padding: 0;
+            margin: 0;
             min-height: 100vh;
-            position: relative;
+            background-image: radial-gradient(circle at 15% 30%, rgba(255, 90, 40, 0.08) 2%, transparent 2.5%),
+                              radial-gradient(circle at 75% 70%, rgba(255, 140, 70, 0.05) 1.8%, transparent 2%);
+            background-size: 48px 48px, 64px 64px;
         }
 
-        /* animated mesh gradient */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.15"><path fill="none" d="M0 0 L800 0 L800 800 L0 800 Z" stroke="%23ff5722" stroke-width="0.5"/><circle cx="200" cy="200" r="80" stroke="%23ff774d" stroke-width="0.4" fill="none"/><circle cx="600" cy="500" r="120" stroke="%23ff774d" stroke-width="0.3" fill="none"/></svg>');
-            background-repeat: repeat;
-            background-size: 180px;
-            pointer-events: none;
-            z-index: 0;
-            animation: slowDrift 90s linear infinite;
-        }
-
-        @keyframes slowDrift {
-            0% { background-position: 0 0; }
-            100% { background-position: 300px 200px; }
-        }
-
-        .container {
-            max-width: 900px;
+        /* container utama */
+        .app-container {
+            max-width: 550px;
             margin: 0 auto;
+            padding: 16px 14px 90px 14px;
             position: relative;
-            z-index: 2;
         }
 
-        /* MAIN CARD PREMIUM */
-        .premium-card {
-            background: rgba(10, 13, 26, 0.82);
-            backdrop-filter: blur(16px);
-            border-radius: 58px;
-            border: 1px solid rgba(255, 100, 60, 0.6);
-            box-shadow: 0 35px 55px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 80, 40, 0.2) inset;
+        /* CARD UTAMA premium glassmorph */
+        .glass-master {
+            background: rgba(12, 15, 30, 0.75);
+            backdrop-filter: blur(18px);
+            border-radius: 42px;
+            border: 1px solid rgba(255, 110, 60, 0.5);
+            box-shadow: 0 25px 40px -12px black, inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            animation: floatIn 0.7s ease-out;
+            transition: transform 0.2s ease;
         }
 
-        @keyframes floatIn {
-            0% { opacity: 0; transform: translateY(40px) scale(0.97); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .premium-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 38px 65px rgba(0, 0, 0, 0.7);
-        }
-
-        /* HEADER GLOW */
-        .hero-glow {
-            background: linear-gradient(125deg, #f4511e, #d6320c, #ff6d3a);
-            background-size: 250% 250%;
-            padding: 1.8rem 1.5rem;
+        /* header beranimasi */
+        .header-blast {
+            background: linear-gradient(135deg, #f4511e, #d6320c, #ff7840);
+            background-size: 200% 200%;
+            padding: 26px 18px;
             text-align: center;
-            border-bottom: 3px solid #ffbc8c;
-            animation: aurora 7s ease infinite;
+            animation: gradientMove 6s ease infinite;
         }
 
-        @keyframes aurora {
+        @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        .hero-glow h1 {
-            font-size: 2.4rem;
+        .header-blast h1 {
+            font-size: 1.9rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            text-shadow: 0 4px 12px black;
-        }
-
-        .hero-glow h1 i {
-            margin-right: 12px;
-            filter: drop-shadow(0 0 4px gold);
-            animation: pulseFire 1s infinite alternate;
-        }
-
-        @keyframes pulseFire {
-            0% { text-shadow: 0 0 2px #ffa047; transform: scale(1);}
-            100% { text-shadow: 0 0 12px #ff6a2e; transform: scale(1.03);}
-        }
-
-        .badge-group {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .badge-link {
-            background: #00000066;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            backdrop-filter: blur(4px);
-            transition: 0.2s;
-        }
-        .badge-link i { margin-right: 6px; }
-        .badge-link:hover { background: #ff5a2eaa; transform: scale(1.02);}
-
-        /* TAB MENU lebih stylish */
-        .tab-nav {
-            display: flex;
-            background: #0a0d1be0;
-            backdrop-filter: blur(12px);
-            gap: 6px;
-            padding: 0 1.6rem;
-            border-bottom: 1px solid #ff775030;
-        }
-
-        .tab-btn {
-            flex: 1;
-            background: transparent;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1.05rem;
-            padding: 1rem 0.2rem;
-            color: #cddcff;
-            cursor: pointer;
-            transition: 0.25s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            border-radius: 30px 30px 0 0;
-            position: relative;
+            flex-wrap: wrap;
         }
 
-        .tab-btn i { font-size: 1.2rem; transition: 0.2s;}
-
-        .tab-btn.active {
-            color: #ffb079;
-            background: linear-gradient(0deg, #ff5a2e30, transparent);
-            border-bottom: 3px solid #ff824e;
+        .header-blast h1 i {
+            text-shadow: 0 0 5px gold;
+            animation: iconPulse 1.3s infinite;
         }
 
-        .tab-btn.active i { transform: translateY(-2px); color: #ff965c;}
+        @keyframes iconPulse {
+            0% { transform: scale(1); opacity: 1;}
+            100% { transform: scale(1.08); opacity: 0.95;}
+        }
 
-        .tab-panel {
+        .header-blast .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        /* TAB bawah (mobile friendly) */
+        .bottom-tab-nav {
+            display: flex;
+            background: rgba(5, 7, 18, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid #ff764a40;
+            border-bottom: 1px solid #ff764a30;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .tab-bot {
+            flex: 1;
+            text-align: center;
+            padding: 14px 0;
+            background: transparent;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #b9c3ff;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .tab-bot i {
+            font-size: 1.5rem;
+        }
+
+        .tab-bot.active {
+            color: #ff9f6e;
+            background: linear-gradient(0deg, #ff5e2a20, transparent);
+            border-bottom: 2px solid #ff7540;
+        }
+
+        /* panel content */
+        .panel {
             display: none;
-            padding: 2rem 1.8rem;
-            animation: fadeSlide 0.4s ease forwards;
+            padding: 20px 18px;
+            animation: fadePanel 0.3s ease;
         }
 
-        .tab-panel.active-panel {
+        .panel.active-panel {
             display: block;
         }
 
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateX(12px);}
-            to { opacity: 1; transform: translateX(0);}
+        @keyframes fadePanel {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
         }
 
-        /* PRICE CARD */
-        .price-modern {
-            background: #070b18aa;
-            border-radius: 44px;
-            padding: 1.6rem;
-            border: 1px solid #ff7a4a55;
-            margin-bottom: 1rem;
+        /* style price list */
+        .price-grid-v2 {
+            background: #03051770;
+            border-radius: 32px;
+            padding: 8px 0;
         }
 
-        .price-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .price-item {
-            background: #01020aa6;
+        .price-card-item {
+            background: #070b1faa;
+            margin: 10px 0;
             border-radius: 60px;
-            padding: 12px 22px;
+            padding: 12px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.25s;
-            border: 1px solid transparent;
-            backdrop-filter: blur(4px);
+            transition: all 0.2s;
+            border: 1px solid #ff7d4d30;
         }
 
-        .price-item:hover {
-            background: #ff673320;
-            border-color: #ff8c58;
-            transform: translateX(6px);
-        }
-
-        .price-amount {
+        .price-nom {
             font-weight: 800;
-            font-size: 1.3rem;
-            background: linear-gradient(115deg, #FFBF6E, #FF9845);
+            font-size: 1.2rem;
+            background: linear-gradient(115deg, #FFC285, #FF974F);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .price-ress {
-            font-weight: 800;
-            background: #ffd48a20;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 1.2rem;
-        }
-
-        .bonus-5k {
-            margin-top: 20px;
+        .price-ressval {
             background: #ff884d20;
-            border-radius: 36px;
-            padding: 12px;
-            text-align: center;
-            font-weight: bold;
-            border: 1px solid #ffa151;
-            animation: softPulse 1.8s infinite;
-        }
-        @keyframes softPulse {
-            0% { box-shadow: 0 0 0 0 #ffa35160; }
-            70% { box-shadow: 0 0 0 8px #ffa35100; }
-            100% { box-shadow: 0 0 0 0 #ffa35100; }
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-weight: 800;
         }
 
-        /* features & warning */
-        .feature-cards {
+        .bonus-special {
+            background: linear-gradient(95deg, #f0a34b30, #ff6f3a30);
+            border-radius: 28px;
+            padding: 14px;
+            margin: 18px 0;
+            text-align: center;
+            font-weight: 700;
+            border-left: 4px solid #ff9f4a;
+        }
+
+        /* features card grid */
+        .feature-grid {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 14px;
         }
-        .f-card {
-            background: #0f142ae0;
-            border-radius: 28px;
-            padding: 1.2rem;
-            display: flex;
-            gap: 18px;
-            align-items: center;
-            border-left: 6px solid #ff764a;
-            transition: 0.2s;
-        }
-        .f-card i { font-size: 2rem; color: #ff834c;}
 
-        /* order tab */
-        .step-modern {
-            background: #01020d80;
-            border-radius: 32px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1rem;
+        .feat-row {
+            background: #11172fe0;
+            border-radius: 28px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
+            transition: 0.15s;
         }
-        .step-num-circle {
-            background: #ff5f2e;
+
+        .feat-row i {
+            font-size: 1.9rem;
+            min-width: 48px;
+            color: #ff9060;
+        }
+
+        /* warning block */
+        .alert-block {
+            background: #1f1422aa;
+            border-radius: 28px;
+            padding: 14px;
+            margin-top: 20px;
+            border-left: 6px solid #f97316;
+        }
+
+        /* order steps */
+        .step-card {
+            background: #01020eaa;
+            border-radius: 28px;
+            padding: 12px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .step-number {
+            background: #f4511e;
             width: 44px;
             height: 44px;
             border-radius: 60px;
@@ -284,246 +244,322 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
-        .admin-buttons {
+
+        /* admin buttons with haptic */
+        .wa-actions {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            margin: 20px 0;
+            gap: 14px;
+            margin: 18px 0;
         }
-        .btnwa {
+
+        .wa-btn {
             background: #25D366;
-            padding: 1rem;
-            border-radius: 60px;
-            text-decoration: none;
-            color: #111;
+            padding: 14px;
+            border-radius: 80px;
+            text-align: center;
             font-weight: 800;
+            text-decoration: none;
+            color: #0a0c12;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            transition: 0.15s linear;
-            box-shadow: 0 6px 0 #128C7E;
+            transition: all 0.12s linear;
+            box-shadow: 0 5px 0 #128C7E;
         }
-        .btnwa.second {
+
+        .wa-btn.second {
             background: #3b9eff;
-            box-shadow: 0 6px 0 #1b4f8b;
+            box-shadow: 0 5px 0 #1b4f8b;
         }
-        .btnwa:active { transform: translateY(2px); box-shadow: 0 2px 0 #128C7E;}
 
-        .footer-note {
+        .wa-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #128C7E;
+        }
+
+        .group-badge {
+            background: #ff964020;
+            border-radius: 60px;
+            padding: 10px;
             text-align: center;
-            padding: 1rem;
-            font-size: 0.7rem;
-            border-top: 1px solid rgba(255,100,60,0.3);
+            font-weight: 600;
         }
 
-        @media (max-width: 550px) {
-            .tab-btn span { display: none; }
-            .tab-btn i { font-size: 1.6rem; margin: 0; }
-            .price-item { flex-wrap: wrap; justify-content: center; text-align: center; gap: 8px; }
-            .hero-glow h1 { font-size: 1.7rem; }
+        .footer-copyright {
+            text-align: center;
+            font-size: 0.65rem;
+            opacity: 0.6;
+            margin-top: 18px;
+        }
+
+        /* fitur tambahan: floating promo & scroll */
+        .floating-promo {
+            background: #ff712ecc;
+            backdrop-filter: blur(10px);
+            position: fixed;
+            bottom: 80px;
+            right: 12px;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            z-index: 99;
+            animation: bounceFloat 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bounceFloat {
+            0%,100%{ transform: translateY(0);}
+            50%{ transform: translateY(-6px);}
+        }
+
+        /* touch feedback */
+        .tap-effect {
+            transition: 0.05s linear;
+        }
+        .tap-effect:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 10px 12px 100px 12px;
+            }
+            .header-blast h1 {
+                font-size: 1.55rem;
+            }
+            .tab-bot span {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="premium-card">
-        <div class="hero-glow">
-            <h1><i class="fas fa-crown"></i> JASTEB REXVYN & BIDZZ</h1>
-            <div class="badge-group">
-                <span class="badge-link"><i class="fab fa-whatsapp"></i> 24/7 OPEN</span>
-                <span class="badge-link"><i class="fas fa-fire"></i> BEST RESS</span>
+<div class="app-container">
+    <div class="glass-master">
+        <div class="header-blast">
+            <h1><i class="fas fa-fire"></i> JASTEB REXVYN <i class="fas fa-bolt"></i><br> & BIDZZ</h1>
+            <div class="stats-row">
+                <span><i class="fas fa-clock"></i> 24/7 ACTIVE</span>
+                <span><i class="fas fa-gem"></i> TOP RESS</span>
             </div>
         </div>
 
-        <!-- TAB MENU -->
-        <div class="tab-nav">
-            <button class="tab-btn active" data-tab="tab1"><i class="fas fa-coins"></i><span> 💰 HARGA</span></button>
-            <button class="tab-btn" data-tab="tab2"><i class="fas fa-bolt"></i><span> 🚀 UNGGUL</span></button>
-            <button class="tab-btn" data-tab="tab3"><i class="fas fa-cart-shopping"></i><span> 📞 ORDER</span></button>
+        <!-- BOTTOM NAVIGATION (mobile friendly) -->
+        <div class="bottom-tab-nav">
+            <button class="tab-bot active" data-panel="panel-price"><i class="fas fa-tags"></i><span>Harga</span></button>
+            <button class="tab-bot" data-panel="panel-feature"><i class="fas fa-rocket"></i><span>Keunggulan</span></button>
+            <button class="tab-bot" data-panel="panel-order"><i class="fas fa-headset"></i><span>Order</span></button>
+            <button class="tab-bot" data-panel="panel-bonus"><i class="fas fa-gift"></i><span>Bonus+</span></button>
         </div>
 
-        <!-- TAB 1: PAKET TERBARU -->
-        <div class="tab-panel active-panel" id="tab1">
-            <div class="price-modern">
-                <div class="price-list">
-                    <div class="price-item"><span class="price-amount">💸 500</span><span class="price-ress">15 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 1.000</span><span class="price-ress">25 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 2.000</span><span class="price-ress">37 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 5.000</span><span class="price-ress">47 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 10.000</span><span class="price-ress">58 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 15.000</span><span class="price-ress">150 RESS</span></div>
-                    <div class="price-item"><span class="price-amount">💸 20.000</span><span class="price-ress">250 RESS</span></div>
-                </div>
-                <div class="bonus-5k">
-                    🔥 Setiap pembelian lebih dari 5k dapat BONUS 5 🔥 &nbsp;|&nbsp; 🎁 Tiap nambah 50mem bagi² jasteb free
-                </div>
-                <div style="margin-top: 18px; font-style: italic; background:#00000030; border-radius: 24px; padding: 10px; text-align:center;">
-                    😈 MAU MURAH? YA JANGAN PELIT — Ambil banyak, baru kerasa bedanya
-                </div>
+        <!-- PANEL 1 : HARGA Terbaru (data sesuai request) -->
+        <div id="panel-price" class="panel active-panel">
+            <div class="price-grid-v2">
+                <div class="price-card-item"><span class="price-nom">💸 500</span><span class="price-ressval">15 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 1.000</span><span class="price-ressval">25 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 2.000</span><span class="price-ressval">37 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 5.000</span><span class="price-ressval">47 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 10.000</span><span class="price-ressval">58 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 15.000</span><span class="price-ressval">150 RESS</span></div>
+                <div class="price-card-item"><span class="price-nom">💸 20.000</span><span class="price-ressval">250 RESS</span></div>
+            </div>
+            <div class="bonus-special">
+                🔥 Setiap pembelian >5k dapat BONUS 5 🔥 <br>
+                🎁 Tiap nambah 50mem bagi² jasteb free 🎁
+            </div>
+            <div style="background:#00000040; border-radius: 24px; padding: 10px; margin-top: 8px; text-align:center;">
+                😈 "MAU MURAH? YA JANGAN PELIT, ambil banyak baru kerasa bedanya"
             </div>
         </div>
 
-        <!-- TAB 2: KEUNGGULAN & PERINGATAN -->
-        <div class="tab-panel" id="tab2">
-            <div class="feature-cards">
-                <div class="f-card"><i class="fas fa-bolt"></i> <span><strong>⚡ Respon cepet, gak pake ngilang</strong><br>Fast response, selalu online</span></div>
-                <div class="f-card"><i class="fas fa-shield-alt"></i> <span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>Terpercaya, no tipu-tipu</span></div>
-                <div class="f-card"><i class="fas fa-comment-dots"></i> <span><strong>🎯 Request? Gas, selama masuk akal</strong><br>Custom order dilayani</span></div>
-                <div class="f-card"><i class="fas fa-hand-peace"></i> <span><strong>😏 Serius beli? Auto gue gasin</strong><br>Prioritas untuk pembeli serius</span></div>
+        <!-- PANEL 2 : KEUNGGULAN + LARANGAN -->
+        <div id="panel-feature" class="panel">
+            <div class="feature-grid">
+                <div class="feat-row"><i class="fas fa-bolt"></i> <span><strong>⚡ Respon cepet</strong><br>gak pake ngilang, fast respon sejati</span></div>
+                <div class="feat-row"><i class="fas fa-shield-alt"></i> <span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>Terjamin kualitas, no tipu</span></div>
+                <div class="feat-row"><i class="fas fa-comment-dots"></i> <span><strong>🎯 Request? Gas, selama masuk akal</strong><br>kustom order? kita layani</span></div>
+                <div class="feat-row"><i class="fas fa-hand-peace"></i> <span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas untuk pembeli serius</span></div>
             </div>
-            <div style="background:#1C1626; border-radius: 32px; margin-top: 20px; padding: 1rem;">
-                <p><i class="fas fa-ban" style="color:#ff7a45;"></i> ❌ Udah order jangan kabur</p>
+            <div class="alert-block">
+                <p><i class="fas fa-ban"></i> ❌ Udah order jangan kabur</p>
                 <p><i class="fas fa-skull-crossbones"></i> ❌ Kita jualan, bukan kejar-kejaran</p>
+                <p><i class="fas fa-check-circle"></i> ✅ Komitmen & trusted seller</p>
             </div>
         </div>
 
-        <!-- TAB 3: ORDER + ADMIN -->
-        <div class="tab-panel" id="tab3">
-            <div class="step-modern">
-                <div class="step-num-circle">1</div>
-                <div><strong>📩 Minat? Chat aja santai</strong><br>Klik admin WA, langsung respon</div>
+        <!-- PANEL 3 : ORDER & ADMIN (LENGKAP) -->
+        <div id="panel-order" class="panel">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div><strong>📩 Minat? Chat aja santai</strong><br>Klik tombol admin di bawah</div>
             </div>
-            <div class="step-modern">
-                <div class="step-num-circle">2</div>
-                <div><strong>🎁 Dapat sung stor + bonus</strong><br>Setiap order dapat bonus extra & free jasteb periodik</div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div><strong>🎁 Dapat sung stor + bonus</strong><br>langsung direspon & diproses</div>
             </div>
-            <div class="step-modern">
-                <div class="step-num-circle">3</div>
-                <div><strong>⚡ Proses kilat</strong><br>Order langsung dikerjain, aman & cepat</div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div><strong>⚡ Gas sesuai request</strong><br>jaminan noss, aman & terpercaya</div>
             </div>
-            <div class="admin-buttons">
-                <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btnwa" id="btnAdmin1">
-                    <i class="fab fa-whatsapp"></i> ADMIN 1 - Sigma
+            <div class="wa-actions">
+                <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="wa-btn tap-effect" id="wa1">
+                    <i class="fab fa-whatsapp"></i> ADMIN 1 - ORDER
                 </a>
-                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btnwa second" id="btnAdmin2">
-                    <i class="fab fa-whatsapp"></i> ADMIN 2 - Gokil
+                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="wa-btn second tap-effect" id="wa2">
+                    <i class="fab fa-whatsapp"></i> ADMIN 2 - CADANGAN
                 </a>
             </div>
-            <div style="background:#141a33; border-radius: 40px; padding: 12px; text-align: center; margin-top: 12px;">
-                <i class="fab fa-whatsapp"></i> JOIN GROUP OFFICIAL : 
-                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#ffb374; font-weight: bold;">Klik Disini</a>
-                <div style="font-size:12px; margin-top:6px;">🔥 Dapat info terbaru & event free jasteb 🔥</div>
+            <div class="group-badge">
+                <i class="fab fa-whatsapp"></i> JOIN GRUP RESMI:  
+                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#ffbc7a; font-weight:bold;">Klik Disini 🔥</a>
+                <div style="font-size:11px; margin-top:6px;">info free jasteb & event</div>
             </div>
         </div>
-        <div class="footer-note">
-            <i class="fas fa-check-circle"></i> JASTEB PREMIUM • REXVYN & BIDZZ • GAS TERUS 2025
+
+        <!-- PANEL 4 : BONUS EKSTRA & INFO MENARIK -->
+        <div id="panel-bonus" class="panel">
+            <div class="bonus-special" style="margin-top:0;">
+                <i class="fas fa-crown"></i> EXTRA BONUS PROGRAM <i class="fas fa-crown"></i>
+            </div>
+            <div class="feature-grid">
+                <div class="feat-row"><i class="fas fa-fire"></i> <span><strong>🔥 BONUS 5🔥</strong> untuk pembelian diatas 5k</span></div>
+                <div class="feat-row"><i class="fas fa-users"></i> <span><strong>🎁 Tiap nambah 50 member</strong> bagi² jasteb gratis!</span></div>
+                <div class="feat-row"><i class="fas fa-gift"></i> <span><strong>🎁 Dapat sung stor</strong> setiap order (limited)</span></div>
+                <div class="feat-row"><i class="fas fa-star"></i> <span><strong>LOYALTY REWARD</strong> order 3x dapat extra ress</span></div>
+            </div>
+            <div class="alert-block" style="background: #2e1c2b60;">
+                💎 Tips: Ambil paket 20k dapat 250 RESS + bonus 5🔥 + peluang free jasteb mingguan.
+            </div>
+            <div style="background:#ff884d20; border-radius: 32px; text-align:center; padding:12px; margin-top:16px;">
+                <i class="fas fa-trophy"></i> TOP UP RESS TERMURAH SE-JASTEB
+            </div>
         </div>
+
+        <div class="footer-copyright">
+            <i class="fas fa-bolt"></i> JASTEB REXVYN & BIDZZ • 2025 • OPEN ORDER 24/7
+        </div>
+    </div>
+    <!-- floating promo animasi -->
+    <div class="floating-promo">
+        <i class="fas fa-gift"></i> FREE JASTEB SETIAP 50MEM
     </div>
 </div>
 
-<!-- AUDIO (klik tombol & efek suara) menggunakan Web Audio API sederhana (bisa di browser) -->
 <script>
-    (function(){
-        // Membuat suara beep / klik khas "klik" modern
+    // FITUR TAB NAVIGASI + AUDIO SOUND PREMIUM (pakai Web Audio, ringan & modern)
+    (function() {
+        // tab switching
+        const tabs = document.querySelectorAll('.tab-bot');
+        const panels = document.querySelectorAll('.panel');
+
+        function activatePanel(panelId) {
+            panels.forEach(panel => panel.classList.remove('active-panel'));
+            const targetPanel = document.getElementById(panelId);
+            if(targetPanel) targetPanel.classList.add('active-panel');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            const activeTab = Array.from(tabs).find(tab => tab.getAttribute('data-panel') === panelId);
+            if(activeTab) activeTab.classList.add('active');
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                const panelId = tab.getAttribute('data-panel');
+                if(panelId) activatePanel(panelId);
+                playBeepSound();  // efek audio saat ganti tab
+                // haptic effect sedikit (getaran jika support)
+                if(navigator.vibrate) navigator.vibrate(20);
+            });
+        });
+
+        // Audio setup (suara klik halus)
         let audioCtx = null;
-        let soundEnabled = true;
+        let soundReady = false;
 
         function initAudio() {
             if (audioCtx) return;
             try {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            } catch(e) { soundEnabled = false; }
+                soundReady = true;
+            } catch(e) { console.log("audio not supported"); }
         }
 
-        function playClickSound() {
-            if (!soundEnabled) return;
-            if (!audioCtx) initAudio();
+        function playBeepSound() {
+            if (!soundReady && audioCtx === null) {
+                initAudio();
+            }
             if (!audioCtx) return;
-            // resume context jika suspend (karena autoplay policy)
             if (audioCtx.state === 'suspended') {
-                audioCtx.resume().then(() => {
-                    generateBeep();
-                }).catch(()=>{});
+                audioCtx.resume().then(() => { generateClick(); }).catch(()=>{});
             } else {
-                generateBeep();
+                generateClick();
             }
         }
 
-        function generateBeep() {
+        function generateClick() {
             if (!audioCtx) return;
-            const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-            osc.frequency.value = 880;
-            gain.gain.value = 0.15;
+            osc.frequency.value = 950;
+            gain.gain.value = 0.1;
             osc.type = 'sine';
-            gain.gain.exponentialRampToValueAtTime(0.00001, now + 0.25);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2);
             osc.start();
-            osc.stop(now + 0.2);
+            osc.stop(audioCtx.currentTime + 0.15);
         }
 
-        // Tambahkan efek suara pada tombol tab (klik tab) dan tombol WA (opsional)
-        const allInteractive = document.querySelectorAll('.tab-btn, .btnwa, .badge-link, a.btnwa, .badge-group .badge-link');
-        
-        function attachSoundToElements() {
-            allInteractive.forEach(el => {
-                el.addEventListener('click', (e) => {
-                    // agar tidak mengganggu navigasi wa
-                    playClickSound();
-                });
-            });
-        }
-
-        // TAB SWITCHING dengan sound terintegrasi
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const panels = document.querySelectorAll('.tab-panel');
-
-        function switchTab(tabId) {
-            panels.forEach(panel => panel.classList.remove('active-panel'));
-            tabBtns.forEach(btn => btn.classList.remove('active'));
-            const activePanel = document.getElementById(tabId);
-            if (activePanel) activePanel.classList.add('active-panel');
-            const clickedBtn = Array.from(tabBtns).find(btn => btn.getAttribute('data-tab') === tabId);
-            if (clickedBtn) clickedBtn.classList.add('active');
-        }
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const target = btn.getAttribute('data-tab');
-                if (target) switchTab(target);
-                playClickSound();
-            });
-        });
-
-        // tambahkan efek suara juga ke tombol WA & group link tapi jangan double
-        const waLinks = document.querySelectorAll('.btnwa');
-        waLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                playClickSound();
-                // tetap redirect WA
-            });
-        });
-
-        const groupLink = document.querySelector('a[href*="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy"]');
-        if(groupLink) {
-            groupLink.addEventListener('click', () => playClickSound());
-        }
-
-        // inisialisasi audio hanya jika ada interaksi pertama user, tidak otomatis (kebijakan browser)
-        function enableAudioOnFirstTouch() {
+        // trigger audio setelah interaksi pertama user (karena autoplay policy)
+        function enableAudioOnUserInteract() {
             initAudio();
             if (audioCtx && audioCtx.state === 'suspended') {
                 audioCtx.resume().then(() => {
-                    // mainkan suara singkat sebagai feedback awal (opsional)
-                    generateBeep();
-                }).catch(e=>console.log);
+                    // short beep untuk feedback
+                    generateClick();
+                }).catch(e=>{});
             }
-            document.removeEventListener('click', enableAudioOnFirstTouch);
-            document.removeEventListener('touchstart', enableAudioOnFirstTouch);
+            document.removeEventListener('click', enableAudioOnUserInteract);
+            document.removeEventListener('touchstart', enableAudioOnUserInteract);
         }
-        document.addEventListener('click', enableAudioOnFirstTouch);
-        document.addEventListener('touchstart', enableAudioOnFirstTouch);
+        document.addEventListener('click', enableAudioOnUserInteract);
+        document.addEventListener('touchstart', enableAudioOnUserInteract);
+
+        // tambahkan efek audio pada tombol WA dan group link
+        const waBtns = document.querySelectorAll('.wa-btn, .group-badge a');
+        waBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                playBeepSound();
+                if(navigator.vibrate) navigator.vibrate(30);
+            });
+        });
+
+        // tambahan efek sentuhan untuk semua tombol interaktif
+        const allClickables = document.querySelectorAll('.tab-bot, .wa-btn, .group-badge a');
+        allClickables.forEach(el => {
+            el.addEventListener('touchstart', function() {
+                this.style.opacity = '0.8';
+                setTimeout(() => { if(this) this.style.opacity = ''; }, 100);
+            });
+            el.addEventListener('touchend', function() {
+                this.style.opacity = '';
+            });
+        });
         
-        attachSoundToElements();
-        // sesuaikan harga terbaru & pesan "Tiap nambah 50mem bagi² jasteb free" sudah ada di tab1
+        // COPYRIGHT NOTIFIKASI BONUS EXTRA: tampilkan toast sederhana (opsional)
+        const bonusPanel = document.getElementById('panel-bonus');
+        if(bonusPanel) {
+            // Tidak perlu banyak
+        }
+        
+        // Harga sudah sesuai update 
+        // Join grup resmi mengarah ke link baru: G1Ia0p97eY93LGjBRgJNFy
+        console.log("JASTEB READY | HP OPTIMIZED | AUDIO & TAB");
     })();
 </script>
-<!-- tambahan animasi hover untuk price list -->
 </body>
 </html>
