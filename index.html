@@ -7,8 +7,6 @@
     <!-- Google Fonts & Font Awesome 6 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -36,7 +34,6 @@
             transition: background 0.3s ease;
         }
 
-        /* Dark/Light mode toggle */
         body.light-mode {
             --bg-primary: linear-gradient(145deg, #E8EEFF 0%, #D0DBF5 100%);
             --card-bg: rgba(240, 245, 255, 0.85);
@@ -45,7 +42,6 @@
             --accent-glow: rgba(80, 120, 200, 0.2);
         }
 
-        /* Particle Canvas */
         #particleCanvas {
             position: fixed;
             top: 0;
@@ -56,7 +52,6 @@
             z-index: 1;
         }
 
-        /* animated gradient orb */
         body::before {
             content: "";
             position: fixed;
@@ -96,7 +91,6 @@
             z-index: 2;
         }
 
-        /* Loading Screen */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -126,7 +120,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -149,7 +142,6 @@
             transform: scale(1.05);
         }
 
-        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 80px;
@@ -171,49 +163,6 @@
             opacity: 1;
         }
 
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 300;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-        .modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background: #1A2A4A;
-            border-radius: 28px;
-            padding: 24px;
-            max-width: 300px;
-            text-align: center;
-            transform: scale(0.9);
-            transition: transform 0.3s;
-        }
-        .modal.show .modal-content {
-            transform: scale(1);
-        }
-        .modal-close {
-            margin-top: 16px;
-            background: #5F8BDF;
-            border: none;
-            padding: 8px 24px;
-            border-radius: 40px;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* CARD UTAMA */
         .premium-glass {
             background: var(--card-bg);
             backdrop-filter: blur(20px);
@@ -229,7 +178,6 @@
             box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.6);
         }
 
-        /* header elegan */
         .header-luxury {
             background: linear-gradient(115deg, #13233F, #0D1A30, #1A2A4A);
             padding: 24px 18px;
@@ -265,27 +213,9 @@
             animation: titleGlow 2s ease infinite;
         }
 
-        body.light-mode .header-luxury h1 {
-            background: linear-gradient(135deg, #2A4A8A, #4A6EAE);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
         @keyframes titleGlow {
             0%, 100% { filter: drop-shadow(0 0 2px var(--accent-glow)); }
             50% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
-        }
-
-        .header-luxury h1 i {
-            color: #6EA8FE;
-            margin: 0 6px;
-            animation: iconSpin 3s ease infinite;
-        }
-
-        @keyframes iconSpin {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            75% { transform: rotate(-5deg); }
         }
 
         .badge-line {
@@ -305,12 +235,7 @@
             transition: all 0.2s;
             cursor: pointer;
         }
-        .badge-line span:hover {
-            background: #2E4170;
-            transform: scale(1.02);
-        }
 
-        /* SCROLLABLE TAB */
         .tab-scroll {
             overflow-x: auto;
             white-space: nowrap;
@@ -350,23 +275,16 @@
             cursor: pointer;
             border-radius: 40px;
             gap: 6px;
-            position: relative;
         }
         .tab-btn-8 i {
             font-size: 1.2rem;
             transition: transform 0.2s;
-        }
-        .tab-btn-8:hover i {
-            transform: translateY(-2px);
         }
         .tab-btn-8.active {
             background: linear-gradient(145deg, #2B3F6E, #1D2E52);
             color: #D6E6FF;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             border: 1px solid #6D93E0;
-        }
-        .tab-btn-8.active i {
-            transform: scale(1.05);
         }
 
         .panel-8 {
@@ -394,11 +312,6 @@
             transition: all 0.25s ease;
             cursor: pointer;
         }
-        .price-item-silver:hover {
-            background: #162044;
-            border-color: #6D93E0;
-            transform: translateX(5px);
-        }
         .price-amount {
             font-weight: 800;
             font-size: 1.2rem;
@@ -409,7 +322,6 @@
             padding: 5px 15px;
             border-radius: 40px;
             font-weight: 700;
-            transition: background 0.2s;
         }
         .bonus-card {
             background: linear-gradient(115deg, #121D3C, #0F1835);
@@ -420,16 +332,7 @@
             border-left: 4px solid #5F8BDF;
             transition: all 0.2s;
         }
-        .bonus-card:hover {
-            transform: scale(1.01);
-            border-left-width: 6px;
-        }
 
-        .feature-grid-8 {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
         .feature-item-8 {
             background: #101B38cc;
             border-radius: 28px;
@@ -437,11 +340,7 @@
             display: flex;
             gap: 16px;
             align-items: center;
-            transition: all 0.2s;
-        }
-        .feature-item-8:hover {
-            background: #162244;
-            transform: translateX(4px);
+            margin: 10px 0;
         }
         .feature-item-8 i {
             font-size: 1.8rem;
@@ -453,12 +352,8 @@
             margin: 12px 0;
             display: flex;
             align-items: center;
-            transition: all 0.2s;
             padding: 8px 12px;
             border-radius: 60px;
-        }
-        .step-list:hover {
-            background: #1E2F4E55;
         }
         .step-num-circle {
             background: #2F4680;
@@ -470,7 +365,6 @@
             justify-content: center;
             font-weight: 800;
             margin-right: 12px;
-            transition: all 0.2s;
         }
 
         .wa-button-group {
@@ -491,38 +385,12 @@
             justify-content: center;
             gap: 12px;
             transition: all 0.15s linear;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-telegram-wa::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        .btn-telegram-wa:hover::before {
-            left: 100%;
-        }
-        .btn-telegram-wa:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
         .btn-telegram-wa.second {
             background: #3B82F6;
             color: white;
         }
 
-        .group-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 16px;
-        }
         .group-btn {
             background: #1E2F4E;
             display: inline-block;
@@ -531,11 +399,7 @@
             text-decoration: none;
             color: white;
             text-align: center;
-            transition: all 0.2s;
-        }
-        .group-btn:hover {
-            background: #2E4680;
-            transform: scale(1.02);
+            margin: 5px;
         }
 
         .channel-card {
@@ -545,27 +409,6 @@
             margin: 12px 0;
             text-align: center;
             border: 1px solid #3C549B;
-            transition: all 0.2s;
-        }
-        .channel-card:hover {
-            transform: translateY(-3px);
-            border-color: #6D93E0;
-            background: #162244;
-        }
-        .channel-icon {
-            font-size: 3rem;
-            color: #7AA2F7;
-            margin-bottom: 10px;
-        }
-        .channel-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .channel-desc {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 12px;
         }
         .channel-btn {
             background: #25D366;
@@ -575,11 +418,6 @@
             text-decoration: none;
             color: #0A0F1A;
             font-weight: 700;
-            transition: all 0.2s;
-        }
-        .channel-btn:hover {
-            transform: scale(1.02);
-            background: #20B859;
         }
 
         .footer-note {
@@ -590,28 +428,108 @@
             margin-top: 8px;
         }
 
-        /* Counter Number */
-        .counter-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #5F8BDF;
-            text-align: center;
-            margin: 10px 0;
-        }
-        .counter-controls {
+        /* Rating Stars */
+        .rating-stars {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        .star {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #4a5568;
+            transition: all 0.2s;
+        }
+        .star.selected {
+            color: #FFD700;
+            text-shadow: 0 0 5px #FFA500;
+        }
+        .star:hover {
+            transform: scale(1.1);
+        }
+
+        /* Testimoni Form */
+        .testimoni-form {
+            background: #0E162Ecc;
+            border-radius: 28px;
+            padding: 18px;
+            margin: 15px 0;
+        }
+        .testimoni-form input, .testimoni-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 60px;
+            border: 1px solid #3C549B;
+            background: #1A2A4A;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        .testimoni-form textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+        .submit-testi {
+            background: #5F8BDF;
+            border: none;
+            padding: 12px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .submit-testi:disabled {
+            background: #3C549B;
+            cursor: not-allowed;
+        }
+        .already-rated {
+            text-align: center;
+            padding: 15px;
+            background: #1E2F4E;
+            border-radius: 28px;
+            margin: 15px 0;
+        }
+        .testimoni-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .testi-item {
+            background: #101B38cc;
+            border-radius: 20px;
+            padding: 12px;
             margin: 10px 0;
         }
-        .counter-btn {
-            background: #2F4680;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            color: white;
-            cursor: pointer;
-            font-weight: 600;
+        .testi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .testi-name {
+            font-weight: 700;
+            color: #7AA2F7;
+        }
+        .testi-stars {
+            color: #FFD700;
+            font-size: 0.8rem;
+        }
+        .testi-message {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+        .testi-date {
+            font-size: 0.65rem;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+        .avg-rating {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1.2rem;
         }
 
         @media (max-width: 500px) {
@@ -623,31 +541,17 @@
 </head>
 <body>
 
-<!-- Loading Screen -->
 <div class="loading-screen" id="loadingScreen">
     <div class="loader"></div>
 </div>
 
-<!-- Particle Canvas -->
 <canvas id="particleCanvas"></canvas>
 
-<!-- Theme Toggle -->
 <button class="theme-toggle" id="themeToggle">
     <i class="fas fa-moon"></i>
 </button>
 
-<!-- Toast Notification -->
 <div class="toast" id="toast">✨ Selamat datang di Jasteb Rexvyn!</div>
-
-<!-- Modal -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <i class="fas fa-gift" style="font-size: 3rem; color: #5F8BDF;"></i>
-        <h3 style="margin: 10px 0;">Halo Bosque!</h3>
-        <p>Selamat datang di website Jasteb Rexvyn & Bidzz. Dapatkan harga terbaik hanya di sini!</p>
-        <button class="modal-close" id="modalClose">Tutup</button>
-    </div>
-</div>
 
 <div class="app-container">
     <div class="premium-glass">
@@ -658,11 +562,10 @@
                 <span><i class="fas fa-gem"></i> BEST RESS</span>
                 <span><i class="fas fa-shield"></i> TERPERCAYA</span>
                 <span><i class="fas fa-rocket"></i> #1 JASTEB</span>
-                <span><i class="fas fa-chart-line"></i> 500+ TRANSACTION</span>
             </div>
         </div>
 
-        <div class="tab-scroll" id="tabScrollContainer">
+        <div class="tab-scroll">
             <button class="tab-btn-8 active" data-tab="tab1"><i class="fas fa-tags"></i><span>HARGA</span></button>
             <button class="tab-btn-8" data-tab="tab2"><i class="fas fa-crown"></i><span>KEUNGGULAN</span></button>
             <button class="tab-btn-8" data-tab="tab3"><i class="fas fa-headset"></i><span>ORDER</span></button>
@@ -676,37 +579,27 @@
 
         <!-- TAB 1 : HARGA -->
         <div id="tab1" class="panel-8 active-panel">
-            <div class="price-item-silver" data-price="500" data-ress="15"><span class="price-amount">💸 500</span><span class="price-ress">15 RESS</span></div>
-            <div class="price-item-silver" data-price="1000" data-ress="25"><span class="price-amount">💸 1.000</span><span class="price-ress">25 RESS</span></div>
-            <div class="price-item-silver" data-price="2000" data-ress="37"><span class="price-amount">💸 2.000</span><span class="price-ress">37 RESS</span></div>
-            <div class="price-item-silver" data-price="5000" data-ress="47"><span class="price-amount">💸 5.000</span><span class="price-ress">47 RESS</span></div>
-            <div class="price-item-silver" data-price="10000" data-ress="58"><span class="price-amount">💸 10.000</span><span class="price-ress">58 RESS</span></div>
-            <div class="price-item-silver" data-price="15000" data-ress="150"><span class="price-amount">💸 15.000</span><span class="price-ress">150 RESS</span></div>
-            <div class="price-item-silver" data-price="20000" data-ress="250"><span class="price-amount">💸 20.000</span><span class="price-ress">250 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 500</span><span class="price-ress">15 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 1.000</span><span class="price-ress">25 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 2.000</span><span class="price-ress">37 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 5.000</span><span class="price-ress">47 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 10.000</span><span class="price-ress">58 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 15.000</span><span class="price-ress">150 RESS</span></div>
+            <div class="price-item-silver"><span class="price-amount">💸 20.000</span><span class="price-ress">250 RESS</span></div>
             <div class="bonus-card">
-                🔥 Setiap pembelian >5k dapat BONUS 5 🔥 &nbsp;| 🎁 Tiap nambah 50member bagi² ress free
+                🔥 Setiap pembelian >5k dapat BONUS 5 🔥 | 🎁 Tiap nambah 50member bagi² ress free
             </div>
             <div style="background:#0B1530; border-radius:24px; padding:12px; text-align:center;">
                 💸 "MAU MURAH? AMBIL BANYAK, BARU KERASA BEDANYA"
             </div>
-            <div class="counter-number" id="totalRessCounter">0</div>
-            <div class="counter-controls">
-                <button class="counter-btn" id="addressBtn">Tambah RESS +</button>
-                <button class="counter-btn" id="resetCounter">Reset</button>
-            </div>
-            <small style="display:block; text-align:center;">*Klik paket di atas untuk menghitung total RESS</small>
         </div>
 
         <!-- TAB 2 : KEUNGGULAN -->
         <div id="tab2" class="panel-8">
-            <div class="feature-grid-8">
-                <div class="feature-item-8"><i class="fas fa-bolt"></i><span><strong>⚡ Respon cepet</strong><br>gak pake ngilang, fast respons</span></div>
-                <div class="feature-item-8"><i class="fas fa-shield-alt"></i><span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>terjamin quality & trusted</span></div>
-                <div class="feature-item-8"><i class="fas fa-comment-dots"></i><span><strong>🎯 Request? Gas, selama masuk akal</strong><br>custom order dilayani</span></div>
-                <div class="feature-item-8"><i class="fas fa-hand-peace"></i><span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas member setia</span></div>
-                <div class="feature-item-8"><i class="fas fa-clock"></i><span><strong>⏱️ Proses cepat</strong><br>Maksimal 10 menit</span></div>
-                <div class="feature-item-8"><i class="fas fa-credit-card"></i><span><strong>💳 Banyak metode</strong><br>Dana, Ovo, Gopay, QRIS, Bank</span></div>
-            </div>
+            <div class="feature-item-8"><i class="fas fa-bolt"></i><span><strong>⚡ Respon cepet</strong><br>gak pake ngilang, fast respons</span></div>
+            <div class="feature-item-8"><i class="fas fa-shield-alt"></i><span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>terjamin quality & trusted</span></div>
+            <div class="feature-item-8"><i class="fas fa-comment-dots"></i><span><strong>🎯 Request? Gas, selama masuk akal</strong><br>custom order dilayani</span></div>
+            <div class="feature-item-8"><i class="fas fa-hand-peace"></i><span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas member setia</span></div>
             <div style="background:#1A1F3A; border-radius: 28px; padding: 14px; margin-top: 20px;">
                 <p><i class="fas fa-ban"></i> ❌ Udah order jangan kabur</p>
                 <p><i class="fas fa-skull-crossbones"></i> ❌ Kita jualan, bukan kejar-kejaran</p>
@@ -719,14 +612,12 @@
             <div class="step-list"><span class="step-num-circle">1</span> 📩 Minat? Chat aja santai</div>
             <div class="step-list"><span class="step-num-circle">2</span> 🎁 Dapat sung stor + bonus langsung</div>
             <div class="step-list"><span class="step-num-circle">3</span> ⚡ Proses kilat, langsung gas</div>
-            <div class="step-list"><span class="step-num-circle">4</span> ✅ Konfirmasi dan ress masuk</div>
             <div class="wa-button-group">
                 <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa"><i class="fab fa-whatsapp"></i> ADMIN 1 - ORDER</a>
                 <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa second"><i class="fab fa-whatsapp"></i> ADMIN 2 - ORDER</a>
             </div>
             <div class="bonus-card" style="margin-top:6px;">
-                <i class="fab fa-whatsapp"></i> JOIN GRUP OFFICIAL : 
-                <a href="https://chat.whatsapp.com/LNc9C37UaR3Hu1QSGJ8bnf" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
+                <i class="fab fa-whatsapp"></i> JOIN GRUP : <a href="https://chat.whatsapp.com/LNc9C37UaR3Hu1QSGJ8bnf" target="_blank" style="color:#9DC6FF;">Klik disini</a> 🔥
             </div>
         </div>
 
@@ -736,15 +627,13 @@
             <div class="bonus-card"><i class="fas fa-users"></i> <strong>FREE RESS</strong><br>Tiap nambah 50 member bagi² ress gratis!</div>
             <div class="bonus-card"><i class="fas fa-gift"></i> <strong>SUNG STOR</strong><br>Dapat sung stor setiap order</div>
             <div class="bonus-card"><i class="fas fa-star"></i> <strong>LOYALTY REWARD</strong><br>order 3x dapat extra ress</div>
-            <div class="bonus-card"><i class="fas fa-medal"></i> <strong>TOP SPENDER</strong><br>Pembelian terbanyak dapet free 100ress</div>
         </div>
 
         <!-- TAB 5 : KOMUNITAS -->
         <div id="tab5" class="panel-8">
             <div class="feature-item-8"><i class="fab fa-whatsapp"></i><span><strong>Grup Resmi JastebRex</strong><br>update harga, free jasteb, dan event</span></div>
             <div class="feature-item-8"><i class="fas fa-users"></i><span><strong>Komunitas Aktif 20+</strong><br>Para member solid & ramah</span></div>
-            <div class="feature-item-8"><i class="fas fa-chart-line"></i><span><strong>Info Promo Spesial</strong><br>Hanya untuk member grup aktif</span></div>
-            <div class="group-buttons">
+            <div class="group-buttons" style="text-align:center;">
                 <a href="https://chat.whatsapp.com/LNc9C37UaR3Hu1QSGJ8bnf" target="_blank" class="group-btn"><i class="fab fa-whatsapp"></i> Gabung Grup WhatsApp</a>
             </div>
             <div class="bonus-card" style="margin-top:12px;">
@@ -752,33 +641,32 @@
             </div>
         </div>
 
-        <!-- TAB 6 : TESTIMONI -->
+        <!-- TAB 6 : TESTIMONI INTERAKTIF (Rating 1x saja) -->
         <div id="tab6" class="panel-8">
-            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ Raka24</strong> — “Gas pol, dapet 250ress + bonus, recomended!”</span></div>
-            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ Jasteman</strong> — “respon cepet, aman, gk ngecewain”</span></div>
-            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ DewiJasteb</strong> — “order 15k dapet 150ress + bonus, mantap”</span></div>
-            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ RexLovers</strong> — “admin baik, free jasteb promo beneran”</span></div>
-            <div class="feature-item-8"><i class="fas fa-user-check"></i><span><strong>⭐ BotakMan</strong> — “udah 5x order, selalu dapet extra, mantul”</span></div>
-            <div class="bonus-card" style="margin-top:12px;">⭐ 4.9/5 dari 150+ pembeli ⭐</div>
+            <div class="avg-rating" id="avgRatingDisplay">⭐ Menghitung rating...</div>
+            
+            <div id="ratingSection">
+                <!-- Tempat untuk form rating atau pesan sudah memberi rating -->
+            </div>
+
+            <div class="testimoni-list" id="testimoniList">
+                <div style="text-align:center; padding:20px;">Memuat testimoni...</div>
+            </div>
         </div>
 
         <!-- TAB 7 : FAQ -->
         <div id="tab7" class="panel-8">
             <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Berapa lama proses?</strong><br>A: Cepat, max 10 menit setelah order & konfirmasi.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Apakah aman?</strong><br>A: 100% aman, sudah banyak pelanggan & testimoni.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Bisa request ress khusus?</strong><br>A: Bisa, asal masuk akal, langsung hubungi admin.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Gimana dapet free jasteb?</strong><br>A: Ikuti event di grup & ajak teman join komunitas.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Apakah aman?</strong><br>A: 100% aman, sudah banyak pelanggan.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Bisa request ress khusus?</strong><br>A: Bisa, asal masuk akal, hubungi admin.</span></div>
             <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Metode pembayaran?</strong><br>A: Dana, Ovo, Gopay, Qris, Transfer Bank.</span></div>
-            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Refund jika gagal?</strong><br>A: Garansi 100% uang kembali jika gagal.</span></div>
         </div>
 
         <!-- TAB 8 : EVENT -->
         <div id="tab8" class="panel-8">
-            <div class="bonus-card"><i class="fas fa-calendar-alt"></i> <strong>🔥 EVENT MINGGUAN 🔥</strong><br>Setiap Jumat: Pembelian 20k dapet extra 20ress</div>
+            <div class="bonus-card"><i class="fas fa-calendar-alt"></i> <strong>EVENT MINGGUAN</strong><br>Setiap Jumat: Pembelian 20k dapet extra 20ress</div>
             <div class="bonus-card"><i class="fas fa-trophy"></i> <strong>LOMBA TOP SPENDER</strong><br>Top 3 dapat free jasteb 50ress</div>
             <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 50 MEMBER BARU</strong><br>Bagi-bagi 150ress gratis</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 100 MEMBER BARU</strong><br>Bagi-bagi 200ress gratis + 5 bonus</div>
-            <div class="feature-item-8"><i class="fas fa-info-circle"></i><span>Follow terus grup untuk info event kilat!</span></div>
         </div>
 
         <!-- TAB 9 : SALURAN -->
@@ -786,22 +674,17 @@
             <div class="channel-card">
                 <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="channel-name">WhatsApp Channel Info Jasteb</div>
-                <div class="channel-desc">Dapatkan update harga, dan info event terbaru!</div>
-                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" class="channel-btn whatsapp"><i class="fab fa-whatsapp"></i> Ikuti Channel</a>
+                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" class="channel-btn"><i class="fab fa-whatsapp"></i> Ikuti Channel</a>
             </div>
             <div class="channel-card">
                 <div class="channel-icon"><i class="fab fa-telegram"></i></div>
                 <div class="channel-name">Telegram Channel (Coming Soon)</div>
-                <div class="channel-desc">Segera hadir! Dapatkan notifikasi cepat.</div>
-                <a href="#" class="channel-btn telegram" style="opacity:0.7; cursor:not-allowed;"><i class="fab fa-telegram"></i> Segera Hadir</a>
-            </div>
-            <div class="bonus-card" style="margin-top:12px;">
-                <i class="fas fa-bell"></i> <strong>SUBSCRIBE CHANNEL</strong><br>Dapatkan info terbaru!
+                <a href="#" class="channel-btn" style="opacity:0.7; cursor:not-allowed;">Segera Hadir</a>
             </div>
         </div>
 
         <div class="footer-note">
-            <i class="fas fa-check-circle"></i> JASTEB REXVYN & BIDZZ • SUPPORT 24 JAM • 2025 • WEB BY REXVYN
+            <i class="fas fa-check-circle"></i> JASTEB REXVYN & BIDZZ • SUPPORT 24 JAM • 2025
         </div>
     </div>
 </div>
@@ -812,19 +695,13 @@
         window.addEventListener('load', function() {
             setTimeout(function() {
                 document.getElementById('loadingScreen').classList.add('hide');
-            }, 800);
+            }, 500);
             setTimeout(function() {
                 document.getElementById('toast').classList.add('show');
                 setTimeout(function() {
                     document.getElementById('toast').classList.remove('show');
                 }, 3000);
-                document.getElementById('modal').classList.add('show');
-            }, 1000);
-        });
-
-        // Modal Close
-        document.getElementById('modalClose').addEventListener('click', function() {
-            document.getElementById('modal').classList.remove('show');
+            }, 800);
         });
 
         // Theme Toggle
@@ -834,15 +711,7 @@
             document.body.classList.toggle('light-mode');
             isDark = !isDark;
             themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-            showToast(isDark ? 'Mode Gelap aktif' : 'Mode Terang aktif');
         });
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        }
 
         // Particle System
         const canvas = document.getElementById('particleCanvas');
@@ -854,7 +723,6 @@
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
-
         for (let i = 0; i < 50; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
@@ -865,7 +733,6 @@
                 opacity: Math.random() * 0.3 + 0.1
             });
         }
-
         function animateParticles() {
             if (!canvas || !ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -888,7 +755,6 @@
         // TAB SWITCHING
         const tabs = document.querySelectorAll('.tab-btn-8');
         const panels = document.querySelectorAll('.panel-8');
-
         function activatePanel(tabId) {
             panels.forEach(panel => panel.classList.remove('active-panel'));
             const target = document.getElementById(tabId);
@@ -897,88 +763,200 @@
             const activeTab = Array.from(tabs).find(tab => tab.getAttribute('data-tab') === tabId);
             if (activeTab) activeTab.classList.add('active');
         }
-
-        let audioCtx = null;
-        function initAudio() {
-            if (audioCtx) return;
-            try {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            } catch(e) {}
-        }
-        function playSoftClick() {
-            if (!audioCtx) initAudio();
-            if (!audioCtx) return;
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume().then(() => generateBeep()).catch(()=>{});
-            } else {
-                generateBeep();
-            }
-        }
-        function generateBeep() {
-            if (!audioCtx) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.frequency.value = 720;
-            gain.gain.value = 0.08;
-            osc.type = 'sine';
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2);
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.12);
-        }
-        function enableAudioOnFirstTap() {
-            initAudio();
-            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().then(() => generateBeep()).catch(e=>{});
-            document.removeEventListener('click', enableAudioOnFirstTap);
-            document.removeEventListener('touchstart', enableAudioOnFirstTap);
-        }
-        document.addEventListener('click', enableAudioOnFirstTap);
-        document.addEventListener('touchstart', enableAudioOnFirstTap);
-
         tabs.forEach(tab => {
             tab.addEventListener('click', (e) => {
                 const targetTab = tab.getAttribute('data-tab');
                 if (targetTab) activatePanel(targetTab);
-                playSoftClick();
                 if (navigator.vibrate) navigator.vibrate(12);
             });
         });
 
-        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, .channel-btn, .price-item-silver');
-        allInteractive.forEach(el => {
+        // ==================== TESTIMONI SYSTEM (1x rating per user) ====================
+        let testimonials = [];
+        const STORAGE_KEY = 'jasteb_testimonials';
+        const USER_RATED_KEY = 'jasteb_user_rated';
+
+        // Load data dari localStorage
+        function loadTestimonials() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                testimonials = JSON.parse(saved);
+            } else {
+                // Data default                testimonials = [
+                    { id: 1, name: "Raka24", rating: 5, message: "Gas pol, dapet 250ress + bonus, recomended!", date: "2025-01-15" },
+                    { id: 2, name: "Jasteman", rating: 5, message: "respon cepet, aman, gk ngecewain", date: "2025-01-20" },
+                    { id: 3, name: "DewiJasteb", rating: 5, message: "order 15k dapet 150ress + bonus, mantap", date: "2025-01-25" },
+                    { id: 4, name: "RexLovers", rating: 4, message: "admin baik, free jasteb promo beneran", date: "2025-02-01" }
+                ];
+                saveTestimonials();
+            }
+            renderTestimonials();
+            updateAverageRating();
+        }
+
+        function saveTestimonials() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(testimonials));
+        }
+
+        function updateAverageRating() {
+            if (testimonials.length === 0) {
+                document.getElementById('avgRatingDisplay').innerHTML = '⭐ Belum ada rating';
+                return;
+            }
+            const total = testimonials.reduce((sum, t) => sum + t.rating, 0);
+            const avg = (total / testimonials.length).toFixed(1);
+            document.getElementById('avgRatingDisplay').innerHTML = `⭐ Rating Rata-rata: ${avg} / 5.0 (dari ${testimonials.length} testimoni)`;
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimoniList');
+            if (testimonials.length === 0) {
+                container.innerHTML = '<div style="text-align:center; padding:20px;">Belum ada testimoni. Jadilah yang pertama!</div>';
+                return;
+            }
+            // Urutkan dari terbaru
+            const sorted = [...testimonials].reverse();
+            container.innerHTML = sorted.map(t => `
+                <div class="testi-item">
+                    <div class="testi-header">
+                        <span class="testi-name">${escapeHtml(t.name)}</span>
+                        <span class="testi-stars">${'⭐'.repeat(t.rating)}</span>
+                    </div>
+                    <div class="testi-message">${escapeHtml(t.message)}</div>
+                    <div class="testi-date">📅 ${t.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function showToastMessage(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Render form rating (hanya jika user belum pernah rating)
+        function renderRatingForm() {
+            const hasRated = localStorage.getItem(USER_RATED_KEY) === 'true';
+            const container = document.getElementById('ratingSection');
+            
+            if (hasRated) {
+                container.innerHTML = `
+                    <div class="already-rated">
+                        <i class="fas fa-check-circle" style="font-size: 2rem; color: #5F8BDF;"></i>
+                        <p style="margin-top: 10px;">🙏 Terima kasih! Anda sudah memberikan rating dan testimoni.</p>
+                        <p style="font-size: 0.8rem; opacity: 0.7;">Setiap user hanya bisa memberikan testimoni 1x saja.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="testimoni-form">
+                    <h3 style="text-align:center; margin-bottom:10px;">📝 Berikan Testimoni Kamu!</h3>
+                    <p style="text-align:center; font-size:0.8rem;">⭐ Rate pengalamanmu berbelanja di sini ⭐</p>
+                    <div class="rating-stars" id="starRatingContainer">
+                        <i class="far fa-star star" data-rate="1"></i>
+                        <i class="far fa-star star" data-rate="2"></i>
+                        <i class="far fa-star star" data-rate="3"></i>
+                        <i class="far fa-star star" data-rate="4"></i>
+                        <i class="far fa-star star" data-rate="5"></i>
+                    </div>
+                    <input type="text" id="testiName" placeholder="Nama kamu (opsional)" maxlength="30">
+                    <textarea id="testiMessage" rows="3" placeholder="Tulis testimoni atau kesanmu... (minimal 5 karakter)" maxlength="200"></textarea>
+                    <button class="submit-testi" id="submitTestiBtn">Kirim Testimoni ✨</button>
+                </div>
+            `;
+
+            // Setup star rating
+            let selectedRating = 0;
+            const stars = document.querySelectorAll('#starRatingContainer .star');
+            
+            function updateStarsUI(rate) {
+                stars.forEach((star, idx) => {
+                    if (idx < rate) {
+                        star.className = 'fas fa-star star selected';
+                    } else {
+                        star.className = 'far fa-star star';
+                    }
+                });
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rate = parseInt(this.getAttribute('data-rate'));
+                    selectedRating = rate;
+                    updateStarsUI(rate);
+                });
+                star.addEventListener('mouseenter', function() {
+                    const rate = parseInt(this.getAttribute('data-rate'));
+                    updateStarsUI(rate);
+                });
+                star.addEventListener('mouseleave', function() {
+                    updateStarsUI(selectedRating);
+                });
+            });
+
+            // Submit handler
+            const submitBtn = document.getElementById('submitTestiBtn');
+            submitBtn.addEventListener('click', function() {
+                const nameInput = document.getElementById('testiName');
+                const messageInput = document.getElementById('testiMessage');
+                let name = nameInput.value.trim();
+                const message = messageInput.value.trim();
+                
+                if (selectedRating === 0) {
+                    showToastMessage('⭐ Pilih rating bintang dulu ya!');
+                    return;
+                }
+                if (message.length < 5) {
+                    showToastMessage('💬 Testimoni minimal 5 karakter!');
+                    return;
+                }
+                if (name === '') {
+                    name = 'Jasteb Lover';
+                }
+                if (name.length > 30) name = name.substring(0, 30);
+
+                const newTesti = {
+                    id: Date.now(),
+                    name: name,
+                    rating: selectedRating,
+                    message: message,
+                    date: new Date().toISOString().split('T')[0]
+                };
+                
+                testimonials.unshift(newTesti);
+                saveTestimonials();
+                localStorage.setItem(USER_RATED_KEY, 'true');
+                
+                renderTestimonials();
+                updateAverageRating();
+                renderRatingForm(); // refresh form ke "sudah rating"
+                showToastMessage('✅ Terima kasih! Testimoni kamu sudah tersimpan.');
+            });
+        }
+
+        // Inisialisasi testimoni
+        loadTestimonials();
+        renderRatingForm();
+
+        // Simulasi tombol interaksi lain
+        const allClickables = document.querySelectorAll('.btn-telegram-wa, .group-btn, .channel-btn, .price-item-silver');
+        allClickables.forEach(el => {
             el.addEventListener('click', () => {
-                playSoftClick();
                 if (navigator.vibrate) navigator.vibrate(20);
             });
-        });
-
-        // RESS Counter
-        let totalRess = 0;
-        const totalRessCounter = document.getElementById('totalRessCounter');
-        const addressBtn = document.getElementById('addressBtn');
-        const resetCounter = document.getElementById('resetCounter');
-        const priceItems = document.querySelectorAll('.price-item-silver');
-
-        priceItems.forEach(item => {
-            item.addEventListener('click', function() {
-                const ress = parseInt(this.getAttribute('data-ress'));
-                if (!isNaN(ress)) {
-                    totalRess += ress;
-                    totalRessCounter.textContent = totalRess;
-                    showToast(`+${ress} RESS ditambahkan! Total: ${totalRess}`);
-                }
-            });
-        });
-
-        addressBtn.addEventListener('click', function() {
-            showToast(`Total RESS: ${totalRess} | Minimal order 500`);
-        });
-
-        resetCounter.addEventListener('click', function() {
-            totalRess = 0;
-            totalRessCounter.textContent = '0';
-            showToast('Counter RESS direset!');
         });
     })();
 </script>
