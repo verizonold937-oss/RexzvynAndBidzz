@@ -150,7 +150,7 @@
             transform: scale(1.02);
         }
 
-        /* SCROLLABLE TAB (8 TAB) */
+        /* SCROLLABLE TAB (9 TAB) */
         .tab-scroll {
             overflow-x: auto;
             white-space: nowrap;
@@ -390,6 +390,58 @@
             transform: scale(1.02);
         }
 
+        /* Channel card styling */
+        .channel-card {
+            background: linear-gradient(115deg, #121D3C, #0F1835);
+            border-radius: 28px;
+            padding: 18px;
+            margin: 12px 0;
+            text-align: center;
+            border: 1px solid #3C549B;
+            transition: all 0.2s;
+        }
+        .channel-card:hover {
+            transform: translateY(-3px);
+            border-color: #6D93E0;
+            background: #162244;
+        }
+        .channel-icon {
+            font-size: 3rem;
+            color: #7AA2F7;
+            margin-bottom: 10px;
+        }
+        .channel-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .channel-desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+        .channel-btn {
+            background: #25D366;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #0A0F1A;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+        .channel-btn:hover {
+            transform: scale(1.02);
+            background: #20B859;
+        }
+        .channel-btn.whatsapp {
+            background: #25D366;
+        }
+        .channel-btn.telegram {
+            background: #26A5E4;
+            color: white;
+        }
+
         .footer-note {
             text-align: center;
             font-size: 0.65rem;
@@ -430,7 +482,7 @@
             </div>
         </div>
 
-        <!-- 8 TAB HORIZONTAL SCROLL -->
+        <!-- 9 TAB HORIZONTAL SCROLL (SALURAN DITAMBAH) -->
         <div class="tab-scroll" id="tabScrollContainer">
             <button class="tab-btn-8 active" data-tab="tab1"><i class="fas fa-tags"></i><span>HARGA</span></button>
             <button class="tab-btn-8" data-tab="tab2"><i class="fas fa-crown"></i><span>KEUNGGULAN</span></button>
@@ -440,6 +492,7 @@
             <button class="tab-btn-8" data-tab="tab6"><i class="fas fa-star"></i><span>TESTIMONI</span></button>
             <button class="tab-btn-8" data-tab="tab7"><i class="fas fa-question-circle"></i><span>FAQ</span></button>
             <button class="tab-btn-8" data-tab="tab8"><i class="fas fa-trophy"></i><span>EVENT</span></button>
+            <button class="tab-btn-8" data-tab="tab9"><i class="fab fa-whatsapp"></i><span>SALURAN</span></button>
         </div>
 
         <!-- TAB 1 : HARGA LENGKAP -->
@@ -486,9 +539,7 @@
             <div class="bonus-card" style="margin-top:6px;">
                 <i class="fab fa-whatsapp"></i> JOIN GRUP OFFICIAL : 
                 <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
-                <i class="fab fa-whatsapp"></i> JOIN SALURAN OFFICIAL : 
-                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
-            </div>
+                </div>
             <div class="bonus-card" style="margin-top:6px; background:#0F1835;">
             </div>
         </div>
@@ -545,6 +596,30 @@
             <div class="event-counter" id="eventCounter">🚀 Next event: 5 hari lagi</div>
         </div>
 
+        <!-- TAB 9 : SALURAN (CHANNEL) BARU -->
+        <div id="tab9" class="panel-8">
+            <div class="channel-card">
+                <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="channel-name">WhatsApp Channel JastebRex</div>
+                <div class="channel-desc">Dapatkan update harga, dan info event terbaru langsung dari channel resmi!</div>
+                <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" class="channel-btn whatsapp"><i class="fab fa-whatsapp"></i> Ikuti Channel</a>
+            </div>
+            
+            <div class="channel-card">
+                <div class="channel-icon"><i class="fab fa-telegram"></i></div>
+                <div class="channel-name">Telegram Channel (Coming Soon)</div>
+                <div class="channel-desc">Segera hadir! Dapatkan notifikasi cepat dan akses eksklusif.</div>
+                <a href="#" class="channel-btn telegram" style="opacity:0.7; cursor:not-allowed;"><i class="fab fa-telegram"></i> Segera Hadir</a>
+            </div>
+            
+            <div class="bonus-card" style="margin-top:12px;">
+                <i class="fas fa-bell"></i> <strong>SUBSCRIBE CHANNEL</strong><br>Segera Hadir
+            </div>
+            <div class="bonus-card" style="background:#0F1835;">
+                <i class="fas fa-gift"></i> Saya Rexvyn Pamit 
+            </div>
+        </div>
+
         <div class="footer-note">
             <i class="fas fa-check-circle"></i> JASTEB REXVYN & BIDZZ • SUPPORT 24 JAM • 2025 • WEB BY REXVYN
         </div>
@@ -553,7 +628,7 @@
 
 <script>
     (function() {
-        // 8 TAB SWITCHING
+        // 9 TAB SWITCHING
         const tabs = document.querySelectorAll('.tab-btn-8');
         const panels = document.querySelectorAll('.panel-8');
 
@@ -614,8 +689,8 @@
             });
         });
 
-        // audio untuk tombol WA dan link grup
-        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, a[href*="chat.whatsapp.com"], a[href*="whatsapp.com/channel"]');
+        // audio untuk tombol WA dan link grup & channel
+        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, .channel-btn, a[href*="chat.whatsapp.com"], a[href*="whatsapp.com/channel"]');
         allInteractive.forEach(el => {
             el.addEventListener('click', () => {
                 playSoftClick();
