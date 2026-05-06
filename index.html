@@ -7,6 +7,8 @@
     <!-- Google Fonts & Font Awesome 6 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,13 +17,43 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        :root {
+            --bg-primary: linear-gradient(145deg, #0B1120 0%, #0A0F1A 100%);
+            --card-bg: rgba(18, 25, 45, 0.75);
+            --border-color: rgba(100, 150, 255, 0.35);
+            --text-primary: #E2E8FF;
+            --accent-blue: #5F8BDF;
+            --accent-glow: rgba(100, 150, 255, 0.3);
+        }
+
         body {
-            background: linear-gradient(145deg, #0B1120 0%, #0A0F1A 100%);
+            background: var(--bg-primary);
             font-family: 'Inter', sans-serif;
-            color: #E2E8FF;
+            color: var(--text-primary);
             padding: 0;
             margin: 0;
             min-height: 100vh;
+            transition: background 0.3s ease;
+        }
+
+        /* Dark/Light mode toggle */
+        body.light-mode {
+            --bg-primary: linear-gradient(145deg, #E8EEFF 0%, #D0DBF5 100%);
+            --card-bg: rgba(240, 245, 255, 0.85);
+            --border-color: rgba(80, 120, 200, 0.4);
+            --text-primary: #1A2A4A;
+            --accent-glow: rgba(80, 120, 200, 0.2);
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* animated gradient orb */
@@ -64,12 +96,129 @@
             z-index: 2;
         }
 
-        /* CARD UTAMA - GLASS SILVER/BLUE */
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0A0F1A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loading-screen.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #3C549B;
+            border-top-color: #5F8BDF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1E2F4E;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1E2F4E;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            z-index: 200;
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #1A2A4A;
+            border-radius: 28px;
+            padding: 24px;
+            max-width: 300px;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            margin-top: 16px;
+            background: #5F8BDF;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* CARD UTAMA */
         .premium-glass {
-            background: rgba(18, 25, 45, 0.75);
+            background: var(--card-bg);
             backdrop-filter: blur(20px);
             border-radius: 48px;
-            border: 1px solid rgba(100, 150, 255, 0.35);
+            border: 1px solid var(--border-color);
             box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -88,6 +237,10 @@
             border-bottom: 1px solid #3E5A9A;
             position: relative;
             overflow: hidden;
+        }
+
+        body.light-mode .header-luxury {
+            background: linear-gradient(115deg, #C5D5F0, #B0C4F0, #D0E0FF);
         }
 
         .header-luxury::before {
@@ -112,9 +265,15 @@
             animation: titleGlow 2s ease infinite;
         }
 
+        body.light-mode .header-luxury h1 {
+            background: linear-gradient(135deg, #2A4A8A, #4A6EAE);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
         @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 2px rgba(100,150,255,0.3)); }
-            50% { filter: drop-shadow(0 0 8px rgba(100,150,255,0.5)); }
+            0%, 100% { filter: drop-shadow(0 0 2px var(--accent-glow)); }
+            50% { filter: drop-shadow(0 0 8px var(--accent-glow)); }
         }
 
         .header-luxury h1 i {
@@ -144,13 +303,14 @@
             font-weight: 600;
             backdrop-filter: blur(4px);
             transition: all 0.2s;
+            cursor: pointer;
         }
         .badge-line span:hover {
             background: #2E4170;
             transform: scale(1.02);
         }
 
-        /* SCROLLABLE TAB (9 TAB) */
+        /* SCROLLABLE TAB */
         .tab-scroll {
             overflow-x: auto;
             white-space: nowrap;
@@ -209,7 +369,6 @@
             transform: scale(1.05);
         }
 
-        /* panel area */
         .panel-8 {
             display: none;
             padding: 22px 18px;
@@ -223,7 +382,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* kartu harga dengan efek hover */
         .price-item-silver {
             background: #0E162Ecc;
             border-radius: 60px;
@@ -252,9 +410,6 @@
             border-radius: 40px;
             font-weight: 700;
             transition: background 0.2s;
-        }
-        .price-item-silver:hover .price-ress {
-            background: #2E4680;
         }
         .bonus-card {
             background: linear-gradient(115deg, #121D3C, #0F1835);
@@ -317,10 +472,6 @@
             margin-right: 12px;
             transition: all 0.2s;
         }
-        .step-list:hover .step-num-circle {
-            background: #5F8BDF;
-            transform: scale(1.05);
-        }
 
         .wa-button-group {
             display: flex;
@@ -361,9 +512,6 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
-        .btn-telegram-wa:active {
-            transform: translateY(1px);
-        }
         .btn-telegram-wa.second {
             background: #3B82F6;
             color: white;
@@ -390,7 +538,6 @@
             transform: scale(1.02);
         }
 
-        /* Channel card styling */
         .channel-card {
             background: linear-gradient(115deg, #121D3C, #0F1835);
             border-radius: 28px;
@@ -434,13 +581,6 @@
             transform: scale(1.02);
             background: #20B859;
         }
-        .channel-btn.whatsapp {
-            background: #25D366;
-        }
-        .channel-btn.telegram {
-            background: #26A5E4;
-            color: white;
-        }
 
         .footer-note {
             text-align: center;
@@ -450,16 +590,28 @@
             margin-top: 8px;
         }
 
-        /* counter animasi untuk event */
-        .event-counter {
-            font-size: 1.2rem;
+        /* Counter Number */
+        .counter-number {
+            font-size: 2rem;
             font-weight: 800;
-            color: #7AA2F7;
-            background: #0B1530;
-            display: inline-block;
-            padding: 4px 12px;
+            color: #5F8BDF;
+            text-align: center;
+            margin: 10px 0;
+        }
+        .counter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        .counter-btn {
+            background: #2F4680;
+            border: none;
+            padding: 8px 20px;
             border-radius: 40px;
-            margin-top: 8px;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
         }
 
         @media (max-width: 500px) {
@@ -470,6 +622,33 @@
     </style>
 </head>
 <body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loader"></div>
+</div>
+
+<!-- Particle Canvas -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- Theme Toggle -->
+<button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+</button>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">✨ Selamat datang di Jasteb Rexvyn!</div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <i class="fas fa-gift" style="font-size: 3rem; color: #5F8BDF;"></i>
+        <h3 style="margin: 10px 0;">Halo Bosque!</h3>
+        <p>Selamat datang di website Jasteb Rexvyn & Bidzz. Dapatkan harga terbaik hanya di sini!</p>
+        <button class="modal-close" id="modalClose">Tutup</button>
+    </div>
+</div>
+
 <div class="app-container">
     <div class="premium-glass">
         <div class="header-luxury">
@@ -479,10 +658,10 @@
                 <span><i class="fas fa-gem"></i> BEST RESS</span>
                 <span><i class="fas fa-shield"></i> TERPERCAYA</span>
                 <span><i class="fas fa-rocket"></i> #1 JASTEB</span>
+                <span><i class="fas fa-chart-line"></i> 500+ TRANSACTION</span>
             </div>
         </div>
 
-        <!-- 9 TAB HORIZONTAL SCROLL (SALURAN DITAMBAH) -->
         <div class="tab-scroll" id="tabScrollContainer">
             <button class="tab-btn-8 active" data-tab="tab1"><i class="fas fa-tags"></i><span>HARGA</span></button>
             <button class="tab-btn-8" data-tab="tab2"><i class="fas fa-crown"></i><span>KEUNGGULAN</span></button>
@@ -495,30 +674,38 @@
             <button class="tab-btn-8" data-tab="tab9"><i class="fab fa-whatsapp"></i><span>SALURAN</span></button>
         </div>
 
-        <!-- TAB 1 : HARGA LENGKAP -->
+        <!-- TAB 1 : HARGA -->
         <div id="tab1" class="panel-8 active-panel">
-            <div class="price-item-silver"><span class="price-amount">💸 500</span><span class="price-ress">15 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 1.000</span><span class="price-ress">25 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 2.000</span><span class="price-ress">37 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 5.000</span><span class="price-ress">47 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 10.000</span><span class="price-ress">58 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 15.000</span><span class="price-ress">150 RESS</span></div>
-            <div class="price-item-silver"><span class="price-amount">💸 20.000</span><span class="price-ress">250 RESS</span></div>
+            <div class="price-item-silver" data-price="500" data-ress="15"><span class="price-amount">💸 500</span><span class="price-ress">15 RESS</span></div>
+            <div class="price-item-silver" data-price="1000" data-ress="25"><span class="price-amount">💸 1.000</span><span class="price-ress">25 RESS</span></div>
+            <div class="price-item-silver" data-price="2000" data-ress="37"><span class="price-amount">💸 2.000</span><span class="price-ress">37 RESS</span></div>
+            <div class="price-item-silver" data-price="5000" data-ress="47"><span class="price-amount">💸 5.000</span><span class="price-ress">47 RESS</span></div>
+            <div class="price-item-silver" data-price="10000" data-ress="58"><span class="price-amount">💸 10.000</span><span class="price-ress">58 RESS</span></div>
+            <div class="price-item-silver" data-price="15000" data-ress="150"><span class="price-amount">💸 15.000</span><span class="price-ress">150 RESS</span></div>
+            <div class="price-item-silver" data-price="20000" data-ress="250"><span class="price-amount">💸 20.000</span><span class="price-ress">250 RESS</span></div>
             <div class="bonus-card">
                 🔥 Setiap pembelian >5k dapat BONUS 5 🔥 &nbsp;| 🎁 Tiap nambah 50member bagi² ress free
             </div>
-            <div style="background:#0B1530; border-radius:24px; padding:12px; text-align:center; transition:0.2s;">
+            <div style="background:#0B1530; border-radius:24px; padding:12px; text-align:center;">
                 💸 "MAU MURAH? AMBIL BANYAK, BARU KERASA BEDANYA"
             </div>
+            <div class="counter-number" id="totalRessCounter">0</div>
+            <div class="counter-controls">
+                <button class="counter-btn" id="addressBtn">Tambah RESS +</button>
+                <button class="counter-btn" id="resetCounter">Reset</button>
+            </div>
+            <small style="display:block; text-align:center;">*Klik paket di atas untuk menghitung total RESS</small>
         </div>
 
-        <!-- TAB 2 : KEUNGGULAN & LARANGAN -->
+        <!-- TAB 2 : KEUNGGULAN -->
         <div id="tab2" class="panel-8">
             <div class="feature-grid-8">
                 <div class="feature-item-8"><i class="fas fa-bolt"></i><span><strong>⚡ Respon cepet</strong><br>gak pake ngilang, fast respons</span></div>
                 <div class="feature-item-8"><i class="fas fa-shield-alt"></i><span><strong>✅ Aman, bukan kaleng-kaleng</strong><br>terjamin quality & trusted</span></div>
                 <div class="feature-item-8"><i class="fas fa-comment-dots"></i><span><strong>🎯 Request? Gas, selama masuk akal</strong><br>custom order dilayani</span></div>
                 <div class="feature-item-8"><i class="fas fa-hand-peace"></i><span><strong>😏 Serius beli? Auto gue gasin</strong><br>prioritas member setia</span></div>
+                <div class="feature-item-8"><i class="fas fa-clock"></i><span><strong>⏱️ Proses cepat</strong><br>Maksimal 10 menit</span></div>
+                <div class="feature-item-8"><i class="fas fa-credit-card"></i><span><strong>💳 Banyak metode</strong><br>Dana, Ovo, Gopay, QRIS, Bank</span></div>
             </div>
             <div style="background:#1A1F3A; border-radius: 28px; padding: 14px; margin-top: 20px;">
                 <p><i class="fas fa-ban"></i> ❌ Udah order jangan kabur</p>
@@ -527,33 +714,32 @@
             </div>
         </div>
 
-        <!-- TAB 3 : ORDER + ADMIN -->
+        <!-- TAB 3 : ORDER -->
         <div id="tab3" class="panel-8">
             <div class="step-list"><span class="step-num-circle">1</span> 📩 Minat? Chat aja santai</div>
             <div class="step-list"><span class="step-num-circle">2</span> 🎁 Dapat sung stor + bonus langsung</div>
             <div class="step-list"><span class="step-num-circle">3</span> ⚡ Proses kilat, langsung gas</div>
+            <div class="step-list"><span class="step-num-circle">4</span> ✅ Konfirmasi dan ress masuk</div>
             <div class="wa-button-group">
                 <a href="https://wa.me/6285709653941?text=ADMIN1%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa"><i class="fab fa-whatsapp"></i> ADMIN 1 - ORDER</a>
-                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa second"><i class="fab fa-whatsapp"></i> ADMIN 2 - ORDER GOKIL</a>
+                <a href="https://wa.me/6288989208953?text=ADMIN2%20MAU%20ORDER%20JASTEB%20DONG" target="_blank" class="btn-telegram-wa second"><i class="fab fa-whatsapp"></i> ADMIN 2 - ORDER</a>
             </div>
             <div class="bonus-card" style="margin-top:6px;">
                 <i class="fab fa-whatsapp"></i> JOIN GRUP OFFICIAL : 
-                <a href="https://chat.whatsapp.com/G1Ia0p97eY93LGjBRgJNFy" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
-                </div>
-            <div class="bonus-card" style="margin-top:6px; background:#0F1835;">
+                <a href="https://chat.whatsapp.com/LNc9C37UaR3Hu1QSGJ8bnf" target="_blank" style="color:#9DC6FF; font-weight:bold;">Klik disini</a> 🔥
             </div>
         </div>
 
-        <!-- TAB 4 : BONUS & HADIAH SPESIAL -->
+        <!-- TAB 4 : BONUS -->
         <div id="tab4" class="panel-8">
-            <div class="bonus-card"><i class="fas fa-fire"></i> <strong>BONUS 5 </strong><br>untuk pembelian diatas 5k</div>
+            <div class="bonus-card"><i class="fas fa-fire"></i> <strong>BONUS 5 🔥</strong><br>untuk pembelian diatas 5k</div>
             <div class="bonus-card"><i class="fas fa-users"></i> <strong>FREE RESS</strong><br>Tiap nambah 50 member bagi² ress gratis!</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>SUNG STOR</strong><br>Dapat sung stor setiap order (limited time)</div>
-            <div class="bonus-card"><i class="fas fa-star"></i> <strong>LOYALTY REWARD</strong><br>order 3x dapat extra ress + bonus khusus</div>
-            <div class="bonus-card"><i class="fas fa-medal"></i> <strong>TOP SPENDER</strong><br>Pembelian terbanyak dalam sebulan dapet free 100ress</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>SUNG STOR</strong><br>Dapat sung stor setiap order</div>
+            <div class="bonus-card"><i class="fas fa-star"></i> <strong>LOYALTY REWARD</strong><br>order 3x dapat extra ress</div>
+            <div class="bonus-card"><i class="fas fa-medal"></i> <strong>TOP SPENDER</strong><br>Pembelian terbanyak dapet free 100ress</div>
         </div>
 
-        <!-- TAB 5 : KOMUNITAS & INFO GRUP -->
+        <!-- TAB 5 : KOMUNITAS -->
         <div id="tab5" class="panel-8">
             <div class="feature-item-8"><i class="fab fa-whatsapp"></i><span><strong>Grup Resmi JastebRex</strong><br>update harga, free jasteb, dan event</span></div>
             <div class="feature-item-8"><i class="fas fa-users"></i><span><strong>Komunitas Aktif 20+</strong><br>Para member solid & ramah</span></div>
@@ -583,38 +769,34 @@
             <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Bisa request ress khusus?</strong><br>A: Bisa, asal masuk akal, langsung hubungi admin.</span></div>
             <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Gimana dapet free jasteb?</strong><br>A: Ikuti event di grup & ajak teman join komunitas.</span></div>
             <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Metode pembayaran?</strong><br>A: Dana, Ovo, Gopay, Qris, Transfer Bank.</span></div>
+            <div class="feature-item-8"><i class="fas fa-question-circle"></i><span><strong>Q: Refund jika gagal?</strong><br>A: Garansi 100% uang kembali jika gagal.</span></div>
         </div>
 
-        <!-- TAB 8 : EVENT & PROMO -->
+        <!-- TAB 8 : EVENT -->
         <div id="tab8" class="panel-8">
             <div class="bonus-card"><i class="fas fa-calendar-alt"></i> <strong>🔥 EVENT MINGGUAN 🔥</strong><br>Setiap Jumat: Pembelian 20k dapet extra 20ress</div>
-            <div class="bonus-card"><i class="fas fa-trophy"></i> <strong>LOMBA TOP SPENDER</strong><br>Top 3 pembelian terbanyak dapat free jasteb 50ress</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 50 MEMBER BARU</strong><br>Bagi-bagi 150ress gratis untuk member random aktif</div>
-            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 100 MEMBER BARU</strong><br>Bagi-bagi 200ress gratis + 5 bonus untuk semua</div>
-            <div class="feature-item-8"><i class="fas fa-info-circle"></i><span>Follow terus grup untuk info event kilat & undian berhadiah!</span></div>
+            <div class="bonus-card"><i class="fas fa-trophy"></i> <strong>LOMBA TOP SPENDER</strong><br>Top 3 dapat free jasteb 50ress</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 50 MEMBER BARU</strong><br>Bagi-bagi 150ress gratis</div>
+            <div class="bonus-card"><i class="fas fa-gift"></i> <strong>EVENT 100 MEMBER BARU</strong><br>Bagi-bagi 200ress gratis + 5 bonus</div>
+            <div class="feature-item-8"><i class="fas fa-info-circle"></i><span>Follow terus grup untuk info event kilat!</span></div>
         </div>
 
-        <!-- TAB 9 : SALURAN (CHANNEL) BARU -->
+        <!-- TAB 9 : SALURAN -->
         <div id="tab9" class="panel-8">
             <div class="channel-card">
                 <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="channel-name">WhatsApp Channel Info Jasteb</div>
-                <div class="channel-desc">Dapatkan update harga, dan info event terbaru langsung dari channel resmi!</div>
+                <div class="channel-desc">Dapatkan update harga, dan info event terbaru!</div>
                 <a href="https://whatsapp.com/channel/0029Vb86Cbh0LKZLGJLHgG1P" target="_blank" class="channel-btn whatsapp"><i class="fab fa-whatsapp"></i> Ikuti Channel</a>
             </div>
-            
             <div class="channel-card">
                 <div class="channel-icon"><i class="fab fa-telegram"></i></div>
                 <div class="channel-name">Telegram Channel (Coming Soon)</div>
-                <div class="channel-desc">Segera hadir! Dapatkan notifikasi cepat dan akses eksklusif.</div>
+                <div class="channel-desc">Segera hadir! Dapatkan notifikasi cepat.</div>
                 <a href="#" class="channel-btn telegram" style="opacity:0.7; cursor:not-allowed;"><i class="fab fa-telegram"></i> Segera Hadir</a>
             </div>
-            
             <div class="bonus-card" style="margin-top:12px;">
-                <i class="fas fa-bell"></i> <strong>SUBSCRIBE CHANNEL(Coming Soon)</strong><br>Segera Hadir
-            </div>
-            <div class="bonus-card" style="background:#0F1835;">
-                <i class="fas fa-gift"></i> Saya Rexvyn Pamit 
+                <i class="fas fa-bell"></i> <strong>SUBSCRIBE CHANNEL</strong><br>Dapatkan info terbaru!
             </div>
         </div>
 
@@ -626,7 +808,84 @@
 
 <script>
     (function() {
-        // 9 TAB SWITCHING
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('hide');
+            }, 800);
+            setTimeout(function() {
+                document.getElementById('toast').classList.add('show');
+                setTimeout(function() {
+                    document.getElementById('toast').classList.remove('show');
+                }, 3000);
+                document.getElementById('modal').classList.add('show');
+            }, 1000);
+        });
+
+        // Modal Close
+        document.getElementById('modalClose').addEventListener('click', function() {
+            document.getElementById('modal').classList.remove('show');
+        });
+
+        // Theme Toggle
+        let isDark = true;
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('light-mode');
+            isDark = !isDark;
+            themeToggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            showToast(isDark ? 'Mode Gelap aktif' : 'Mode Terang aktif');
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // Particle System
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 1,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5,
+                opacity: Math.random() * 0.3 + 0.1
+            });
+        }
+
+        function animateParticles() {
+            if (!canvas || !ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(100, 150, 255, ${p.opacity})`;
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // TAB SWITCHING
         const tabs = document.querySelectorAll('.tab-btn-8');
         const panels = document.querySelectorAll('.panel-8');
 
@@ -639,7 +898,6 @@
             if (activeTab) activeTab.classList.add('active');
         }
 
-        // efek suara ringan
         let audioCtx = null;
         function initAudio() {
             if (audioCtx) return;
@@ -687,8 +945,7 @@
             });
         });
 
-        // audio untuk tombol WA dan link grup & channel
-        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, .channel-btn, a[href*="chat.whatsapp.com"], a[href*="whatsapp.com/channel"]');
+        const allInteractive = document.querySelectorAll('.btn-telegram-wa, .group-btn, .channel-btn, .price-item-silver');
         allInteractive.forEach(el => {
             el.addEventListener('click', () => {
                 playSoftClick();
@@ -696,14 +953,33 @@
             });
         });
 
-        // update event counter sederhana
-        const counterEl = document.getElementById('eventCounter');
-        if (counterEl) {
-            const nextEvent = new Date();
-            nextEvent.setDate(nextEvent.getDate() + (5 - nextEvent.getDay() + 1) % 7);
-            const daysLeft = Math.ceil((nextEvent - new Date()) / (1000 * 3600 * 24));
-            counterEl.innerHTML = `🚀 Event berikutnya: ${daysLeft} hari lagi | Jumat Diskon 15%`;
-        }
+        // RESS Counter
+        let totalRess = 0;
+        const totalRessCounter = document.getElementById('totalRessCounter');
+        const addressBtn = document.getElementById('addressBtn');
+        const resetCounter = document.getElementById('resetCounter');
+        const priceItems = document.querySelectorAll('.price-item-silver');
+
+        priceItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const ress = parseInt(this.getAttribute('data-ress'));
+                if (!isNaN(ress)) {
+                    totalRess += ress;
+                    totalRessCounter.textContent = totalRess;
+                    showToast(`+${ress} RESS ditambahkan! Total: ${totalRess}`);
+                }
+            });
+        });
+
+        addressBtn.addEventListener('click', function() {
+            showToast(`Total RESS: ${totalRess} | Minimal order 500`);
+        });
+
+        resetCounter.addEventListener('click', function() {
+            totalRess = 0;
+            totalRessCounter.textContent = '0';
+            showToast('Counter RESS direset!');
+        });
     })();
 </script>
 </body>
